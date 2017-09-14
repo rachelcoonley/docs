@@ -1,7 +1,7 @@
 ---
 title: Rancher Compose
-layout: rancher-default-v1.6
-version: v1.6
+layout: rancher-default-v2.0
+version: v2.0
 lang: en
 redirect_from:
   - /rancher/rancher-compose/
