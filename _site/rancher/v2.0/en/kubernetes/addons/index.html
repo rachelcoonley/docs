@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Kubernetes Addons in Rancher</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Documentation for Rancher">
+    <link href="/docs/favicon.png" rel="shortcut icon" type="image/png" sizes="16x16">
+    <link href="/docs/css/syntax.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+    <link href="/docs/vendor/font-awesome/css/font-awesome.min.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+    <link href="/docs/vendor/lato/lato.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+    <link href="/docs/css/lacsso.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+    <link href="/docs/css/slicknav.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+    <link href="/docs/css/rancher-docs.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+  </head>
+  <body class="bg-default">
+    <div class="row body">
+      <header id="header" class="section">
+        <nav class="row" role="navigation">
+          <div class="col span-3">
+          <a class="navbar-brand" href="/"><img src="/docs/img/rancher-logo-nopadding.svg" width="200px" style="padding-left: 20px" /></a>
+          </div>
+
+          <div class="col span-5 offset-3">
+            <!--Start Google Search-->
+            <div class="gcse-search" id="google-search"></div>
+            <script>
+              var match = window.location.pathname.match(/\/rancher\/([^\/]+)/);
+              if ( match ) {
+                document.getElementById('google-search').setAttribute('data-defaultToRefinement', match[1]);
+              }
+
+              (function() {
+                var cx = '007896692384436596364:60akf3bfmxm';
+                var gcse = document.createElement('script');
+                gcse.type = 'text/javascript';
+                gcse.async = true;
+                gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(gcse, s);
+              })();
+            </script>
+            <!--End Google Search-->
+          </div>
+        </nav>
+      </header>
+      <div class="col span-3 mt-0 mr-0 sidebar">
+
+<ul id="menu">
+    <li><a href="/docs/rancher/v1.6/en/">Overview</a></li>
+    <li><a href="/docs/rancher/v1.6/en/quick-start-guide/">Quick Start Guide</a></li>
+    <li>
+        <a href="#">Installing Rancher<i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/">Rancher Server</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#requirements">Rancher Server Requirements</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#rancher-server-tags">Rancher Server Tags</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#single-container">Launching Rancher Server</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#multi-nodes">Setting up HA</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#requirements-for-ha">HA Requirements</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#single-container-external-database">Using an External DB</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#single-container-bind-mount">Bind Mounted MySQL Volume</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#elb">Using an ELB in AWS</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#ldap">Using LDAP/AD with TLS</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#http-proxy">Behind an HTTP Proxy</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/selinux/">SELinux Requirements for RHEL/CentOS</a></li>
+          <li>
+               <a href="#">Basic SSL Configuration<i class="pull-right fa fa-angle-down"></i></a>
+               <ul>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/basic-ssl-config/#requirements">Requirements</a></li>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/basic-ssl-config/#example-nginx-configuration">Example NGINX Configuration</a></li>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/basic-ssl-config/#example-apache-configuration">Example Apache Configuration</a></li>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/basic-ssl-config/#example-haproxy-configuration">Example HAProxy Configuration</a></li>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/basic-ssl-config/#example-f5-big-ip-configuration">Example F5 BIG-IP Configuration</a></li>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/basic-ssl-config/#elb">Using an ELB in AWS with SSL</a></li>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/basic-ssl-config/#using-self-signed-certs-beta">Using Self Signed Certs</a></li>
+               </ul>
+          </li>
+          <li>
+               <a href="#">No Internet Access<i class="pull-right fa fa-angle-down"></i></a>
+               <ul>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/no-internet-access/#using-a-private-registry">Using a Private Registry</a></li>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/no-internet-access/#using-an-http-proxy">Using an HTTP Proxy</a></li>
+               </ul>
+          </li>
+        </ul>
+    </li>
+    <li>
+         <a href="#">Upgrading Rancher<i class="pull-right fa fa-angle-down"></i></a>
+         <ul>
+           <li><a href="/docs/rancher/v1.6/en/upgrading/">Upgrading Rancher</a></li>
+           <li><a href="/docs/rancher/v1.6/en/upgrading/#rancher-server-tags">Rancher Server Tags</a></li>
+           <li><a href="/docs/rancher/v1.6/en/upgrading/#infrastructure-services">Upgrading Infrastructure Services</a></li>
+           <li><a href="/docs/rancher/v1.6/en/upgrading/#multi-nodes">Upgrading Rancher HA Setup</a></li>
+           <li><a href="/docs/rancher/v1.6/en/upgrading/#single-container-external-database">Using an external DB</a></li>
+           <li><a href="/docs/rancher/v1.6/en/upgrading/#single-container-bind-mount">Bind Mounted MySQL Volume</a></li>
+           <li><a href="/docs/rancher/v1.6/en/upgrading/#rancher-server-with-no-internet-access">No Internet Access</a></li>
+        </ul>
+     </li>
+    <li>
+         <a href="#">Rancher Configuration<i class="pull-right fa fa-angle-down"></i></a>
+         <ul>
+           <li>
+                <a href="#">Access Control Providers<i class="pull-right fa fa-angle-down"></i></a>
+                <ul>
+                  <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#active-directory">Active Directory</a></li>
+                  <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#azure-ad">Azure AD</a></li>
+                  <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#github">Github</a></li>
+                  <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#local-authentication">Local Authentication</a></li>
+                  <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#openldap">OpenLDAP</a></li>
+                  <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#shibboleth">Shibboleth/SAML</a></li>
+                </ul>
+          </li>
+          <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#site-access">Rancher Site Access</a></li>
+          <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#restricting-concurrent-sessions">Restricting Concurrent Sessions</a></li>
+          <li><a href="/docs/rancher/v1.6/en/configuration/accounts/">Accounts</a></li>
+          <li><a href="/docs/rancher/v1.6/en/configuration/settings/#host-registration">Host Registration</a></li>
+          <li><a href="/docs/rancher/v1.6/en/configuration/settings/#catalog">Enabling Catalogs</a></li>
+          <li><a href="/docs/rancher/v1.6/en/configuration/machine-drivers/">Machine Drivers</a></li>
+        </ul>
+    </li>
+    <li>
+          <a href="#">Environments<i class="pull-right fa fa-angle-down"></i></a>
+          <ul>
+            <li><a href="/docs/rancher/v1.6/en/environments/">Managing Environments</a></li>
+            <li><a href="/docs/rancher/v1.6/en/environments/#what-is-an-environment-template">Environment Templates</a></li>
+            <li><a href="/docs/rancher/v1.6/en/environments/#membership-roles">Roles in an Environment</a></li>
+          </ul>
+    </li>
+    <li>
+        <a href="#">Hosts<i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/hosts/">Getting Started with Hosts</a></li>
+          <li><a href="/docs/rancher/v1.6/en/hosts/#supported-docker-versions">Supported Docker Versions</a></li>
+          <li><a href="/docs/rancher/v1.6/en/hosts/#host-labels">Adding Host Labels</a></li>
+          <li><a href="/docs/rancher/v1.6/en/hosts/#scheduler-ips">Adding Scheduler IPs</a></li>
+          <li><a href="/docs/rancher/v1.6/en/hosts/#hosts-behind-an-http-proxy">Behind an HTTP Proxy</a></li>
+          <li><a href="/docs/rancher/v1.6/en/hosts/custom/">Adding Custom Hosts</a></li>
+          <li>
+              <a href="#">Adding Cloud Provided Hosts<i class="pull-right fa fa-angle-down"></i></a>
+              <ul>
+                <li><a href="/docs/rancher/v1.6/en/hosts/amazon/">Adding Amazon EC2 Hosts</a></li>
+                <li><a href="/docs/rancher/v1.6/en/hosts/azure/">Adding Azure Hosts</a></li>
+                <li><a href="/docs/rancher/v1.6/en/hosts/digitalocean/">Adding DigitalOcean Hosts</a></li>
+                <li><a href="/docs/rancher/v1.6/en/hosts/exoscale/">Adding Exoscale Hosts</a></li>
+                <li><a href="/docs/rancher/v1.6/en/hosts/packet/">Adding Packet Hosts</a></li>
+                <li><a href="/docs/rancher/v1.6/en/hosts/rackspace/">Adding Rackspace Hosts</a></li>
+                <li><a href="/docs/rancher/v1.6/en/hosts/other/">Adding Hosts from Other Cloud Providers</a></li>
+              </ul>
+          </li>
+          <li><a href="/docs/rancher/v1.6/en/hosts/#accessing-hosts-from-the-cloud-providers">Accessing Cloud Provided Hosts</a></li>
+          <li><a href="/docs/rancher/v1.6/en/hosts/#removing-hosts">Removing Hosts</a></li>
+        </ul>
+    </li>
+    <li>
+      <a href="#">Registries<i class="pull-right fa fa-angle-down"></i></a>
+      <ul>
+        <li><a href="/docs/rancher/v1.6/en/environments/registries/">Adding Private Registries</a></li>
+        <li><a href="/docs/rancher/v1.6/en/environments/registries/#insecure-registries">Insecure Registries</a></li>
+        <li><a href="/docs/rancher/v1.6/en/environments/registries/#self-signed-certificates">Self Signed Certificates</a></li>
+        <li><a href="/docs/rancher/v1.6/en/environments/registries/#using-amazons-ecr-registry">Using Amazon's ECR</a></li>
+        <li><a href="/docs/rancher/v1.6/en/environments/registries/#using-google-container-registry">Using Google Container Registry</a></li>
+        <li><a href="/docs/rancher/v1.6/en/environments/registries/#changing-the-default-registry">Changing the Default Registry</a></li>
+        <li><a href="/docs/rancher/v1.6/en/environments/registries/#limiting-which-registries-can-be-used">Limiting Registries</a></li>
+      </ul>
+    </li>
+    <li><a href="/docs/rancher/v1.6/en/environments/certificates/">Certificates</a></li>
+    <li>
+      <a href="#">Infrastructure Services<i class="pull-right fa fa-angle-down"></i></a>
+          <ul>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/">Infrastructure Services</a></li>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/networking/">Networking</a></li>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/network-policy/">Network Policies</a></li>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/load-balancer">Load Balancer</a></li>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/dns-service/">DNS Service</a></li>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/metadata-service/">Metadata Service</a></li>
+              <li>
+                  <a href="#">Persistent Storage Service<i class="pull-right fa fa-angle-down"></i></a>
+                  <ul>
+                      <li><a href="/docs/rancher/v1.6/en/rancher-services/storage-service/">Persistent Storage Service</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/rancher-services/storage-service/rancher-nfs/">Rancher NFS</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/rancher-services/storage-service/rancher-ebs/">Rancher EBS</a></li>
+                  </ul>
+              </li>
+              <li>
+                  <a href="#">External Scheduler<i class="pull-right fa fa-angle-down"></i></a>
+                  <ul>
+                      <li><a href="/docs/rancher/v1.6/en/rancher-services/scheduler/">External Scheduler</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/rancher-services/scheduler/#multiple-ips">Scheduling against multiple IPs</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/rancher-services/scheduler/#resource-constraints">Scheduling with Resource Constraints</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/rancher-services/scheduler/#restrict-services-on-host">Scheduling only Specific Services on a Host</a></li>
+                  </ul>
+              </li>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/audit-log/">Audit Logging</a></li>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/service-accounts/">Service Accounts</a></li>
+           </ul>
+    </li>
+    <li>
+          <a href="#">Cattle<i class="pull-right fa fa-angle-down"></i></a>
+          <ul>
+                <li><a href="/docs/rancher/v1.6/en/cattle/stacks/">Stacks</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/adding-services/">Services</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/volumes/">Volumes</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/">Load Balancers</a></li>
+                <li>
+                    <a href="#">Load Balancer Options in the UI<i class="pull-right fa fa-angle-down"></i></a>
+                    <ul>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#adding-a-load-balancer-in-the-ui">Adding Load Balancers</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#service-rule">Targeting Specific Services</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#selector-rule">Targeting Services based on Selectors</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#ssl-termination">SSL Termination</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#stickiness-policy-for-load-balancers">Stickiness Policy</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#custom-haproxy-configuration">Custom HAProxy Configuration</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#labelsscheduling-load-balancers">Labels and Scheduling</a></li>
+                      </ul>
+                </li>
+                <li>
+                    <a href="#">Load Balancer Options with CLI and Compose<i class="pull-right fa fa-angle-down"></i></a>
+                    <ul>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#adding-a-load-balancer-with-rancher-compose">Adding Load Balancers</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#source-ports">Defining Source Ports</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#port-rules">Port Rules</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#certificates">Certificates</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#custom-configuration">Custom HAProxy Configuration</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#stickiness-policy">Stickiness Policy</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#load-balancer-example-l7">Example of L7 Load Balancer</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#internal-load-balancer-example">Example of Internal Load Balancer</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#ssl-termination-example">Example of SSL Termination with a Load Balancer</a></li>
+                      </ul>
+                </li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/adding-external-services/">External Services</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/adding-service-alias/">Service Alias</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/health-checks/">Health Checks</a></li>
+                <li>
+                    <a href="#">Scheduling Services<i class="pull-right fa fa-angle-down"></i></a>
+                    <ul>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/scheduling/">Scheduling</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/scheduling/#scheduling-options-in-the-ui">Scheduling in the UI</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/scheduling/#adding-labels-in-rancher-compose">Scheduling in Rancher Compose</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/scheduling/#table-of-scheduling-labels">Table of Scheduling Labels</a></li>
+                    </ul>
+                </li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/upgrading/">Upgrading Services</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/internal-dns-service/">Internal DNS Service in Cattle Environments</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/external-dns-service/">External DNS Service</a></li>
+                <li>
+                    <a href="#">Rancher-Compose<i class="pull-right fa fa-angle-down"></i></a>
+                    <ul>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/rancher-compose/">Rancher Compose</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/rancher-compose/commands/">Commands and Options</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/rancher-compose/environment-interpolation/">Environment Interpolation</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/rancher-compose/build/">Building with AWS S3</a></li>
+                    </ul>
+                </li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/secrets/">Secrets - Experimental</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/webhook-service/">Webhooks</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/labels/">Labels in Cattle</a></li>
+          </ul>
+    </li>
+    <li>
+          <a href="#">Kubernetes<i class="pull-right fa fa-angle-down"></i></a>
+          <ul>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/">Launching Kubernetes</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/resiliency-planes/">Resiliency Planes</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/providers/">Cloud Providers</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/private-registry/">Private Registry</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/rbac/">RBAC</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/disaster-recovery/">Disaster Recovery</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/backups/">Backups</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/storage/">Persistent Storage</a></li>
+              <li>
+                  <a href="#">Add-ons Support<i class="pull-right fa fa-angle-down"></i></a>
+                  <ul>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/addons/">Add-ons Support</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/addons/#helm">Helm</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/addons/#skydns">SkyDNS</a></li>
+                  </ul>
+              </li>
+              <li>
+                  <a href="#">Ingress Support and Options<i class="pull-right fa fa-angle-down"></i></a>
+                  <ul>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/">Ingress Support</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#host-based-routing">Host Based Routing</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#path-based-routing">Path Based Routing</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#scale-and-other-port">Multiple Load Balancers and Selecting Ports</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#tls">Using TLS</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#blocking-http">Blocking HTTP</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#custom-haproxy">Custom HAProxy</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#scheduled-globally">Scheduling on all Hosts</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#host-scheduling">Scheduling on a specific Host</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#only-local">Targeting Only Containers on the Same Host</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#prefer-local">Prioritizing Containers on the Same Host</a></li>
+                  </ul>
+              </li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/upgrading/">Upgrading Kubernetes</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/deleting/">Deleting Kubernetes</a></li>
+
+          </ul>
+    </li>
+    <li><a href="/docs/rancher/v1.6/en/mesos/">Mesos</a></li>
+    <li><a href="/docs/rancher/v1.6/en/swarm/">Swarm - Experimental </a></li>
+    <li><a href="/docs/rancher/v1.6/en/windows/">Windows - Experimental</a></li>
+    <li><a href="/docs/rancher/v1.6/en/native-docker/">Using Native Docker CLI</a></li>
+    <li>
+            <a href="#">Rancher Catalog<i class="pull-right fa fa-angle-down"></i></a>
+            <ul>
+                <li><a href="/docs/rancher/v1.6/en/catalog/">Catalog</a></li>
+                <li><a href="/docs/rancher/v1.6/en/catalog/private-catalog/">Creating Private Catalogs</a></li>
+            </ul>
+        </li>
+    <li><a href="#">Rancher CLI<i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+            <li><a href="/docs/rancher/v1.6/en/cli/">Rancher CLI</a></li>
+            <li><a href="/docs/rancher/v1.6/en/cli/commands/">Commands and Options</a></li>
+            <li><a href="/docs/rancher/v1.6/en/cli/variable-interpolation/">Variable Interpolation</a></li>
+        </ul>
+    </li>
+    <li><a href="/docs/rancher/v1.6/en/api/v2-beta/">API Documentation</a></li>
+    <li><a href="/docs/rancher/v1.6/en/contributing/">Contributing to Rancher</a></li>
+    <li>
+        <a href="#">FAQs<i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+            <li><a href="/docs/rancher/v1.6/en/faqs/server/">FAQs about Rancher Server</a></li>
+            <li><a href="/docs/rancher/v1.6/en/faqs/agents/">FAQs about Rancher Agents/Hosts</a></li>
+            <li><a href="/docs/rancher/v1.6/en/faqs/troubleshooting/">Troubleshooting FAQS</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">Docs Archive<i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+            <li><a href="/docs/rancher/v1.5/en/">Rancher v1.5</a></li>
+            <li><a href="/docs/rancher/v1.4/en/">Rancher v1.4</a></li>
+            <li><a href="/docs/rancher/v1.3/en/">Rancher v1.3</a></li>
+            <li><a href="/docs/rancher/v1.2/en/">Rancher v1.2</a></li>
+            <li><a href="/docs/rancher/v1.1/en/">Rancher v1.1</a></li>
+            <li><a href="/docs/rancher/v1.0/en/">Rancher v1.0</a></li>
+        </ul>
+    </li>
+</ul>
+
+      </div>
+
+      <div class="col span-8">
+        <div class="content-container">
+          <h2 id="kubernetes-add-ons">Kubernetes Add-ons</h2>
+<hr />
+
+<p>Rancher automatically installs Kubernetes add-ons to help enhance the Kubernetes experience. If you would like to turn off installing the add-ons, you will need to <a href="/docs/rancher/v1.6/en/kubernetes/#configuring-kubernetes">configure Kubernetes</a> to disable the automatic installation of the add-ons.</p>
+
+<ul>
+  <li><a href="#helm">Helm</a> - A Package Manager for Kubernetes</li>
+  <li><a href="#dashboard">Dashboard</a> - A dashboard web interface for Kubernetes</li>
+  <li><a href="#skydns">SkyDNS</a> - A DNS server for Kubernetes</li>
+</ul>
+
+<h3 id="helm">Helm</h3>
+
+<p>Helm is a tool that streamlines installing and managing Kubernetes applications. It helps you run applications on Kubernetes by packaging complex applications in to Charts. A Chart is a collection of files that describes Kubernetes resources, which may be used to deploy simple pods or complex applications (e.g. a full web stack with all of its components).</p>
+
+<p>Helm consists of two parts, a server called Tiller and a client called Helm. Tiller is automatically started by Rancher and is launched in the <strong>kube-system</strong> namespace. The Helm client is installed in the embedded <code class="highlighter-rouge">kubectl</code> CLI.</p>
+
+<h4 id="getting-started-with-helm-on-rancher">Getting Started With Helm on Rancher</h4>
+
+<p>When installing Kubernetes on Rancher, you’ll need to <a href="/docs/rancher/v1.6/en/kubernetes/#configuring-kubernetes">configure your Kubernetes</a> so that the add-ons enabled in order to have Helm automatically installed. After Kubernetes is installed, you can start using helm either directly <a href="#using-helm-in-the-rancher-ui">through the shell that Rancher provides in the UI</a> or <a href="#using-helm-on-a-workstation">configuring your workstation to use helm</a>.</p>
+
+<h5 id="using-helm-in-the-rancher-ui">Using <code class="highlighter-rouge">helm</code> in the Rancher UI</h5>
+
+<p>Rancher provides shell access directly to a managed <code class="highlighter-rouge">kubectl</code> instance that can be used to manage Kubernetes clusters and applications. To start using this shell, navigate to <strong>Kubernetes</strong> -&gt; <strong>CLI</strong>. This shell is automatically installed with a Helm client and commands for Helm can be used immediately.</p>
+
+<p><img src="/docs/img/kubernetes/kubectl.png" alt="Kubectl" /></p>
+
+<h5 id="using-helm-on-a-workstation">Using <code class="highlighter-rouge">helm</code> on a Workstation</h5>
+
+<p>After installing Kubernetes on Rancher, you can configure <code class="highlighter-rouge">kubectl</code> on your workstation by generating a configuration under <strong>Kubernetes</strong> -&gt; ** CLI**.</p>
+
+<p>In order to use Helm on your workstation, you will need to install it according to your needs. Please use the official <a href="https://github.com/kubernetes/helm/blob/master/docs/install.md">installation documentation for Helm</a> to install Helm.</p>
+
+<p>On your workstation, verify that you can communicate with Tiller using your installed Helm client:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>helm init
+<span class="nv">$HELM_HOME</span> has been configured at <span class="nv">$HOME</span>/.helm.
+Warning: Tiller is already installed <span class="k">in </span>the cluster. <span class="o">(</span>Use --client-only to suppress this message.<span class="o">)</span>
+Happy Helming!
+
+<span class="gp">$ </span>helm version
+Client: &amp;version.Version<span class="o">{</span>SemVer:<span class="s2">"v2.1.3"</span>, GitCommit:<span class="s2">"5cbc48fb305ca4bf68c26eb8d2a7eb363227e973"</span>, GitTreeState:<span class="s2">"clean"</span><span class="o">}</span>
+Server: &amp;version.Version<span class="o">{</span>SemVer:<span class="s2">"v2.1.3"</span>, GitCommit:<span class="s2">"5cbc48fb305ca4bf68c26eb8d2a7eb363227e973"</span>, GitTreeState:<span class="s2">"clean"</span><span class="o">}</span>
+</code></pre>
+</div>
+
+<h4 id="upgrading-helm">Upgrading Helm</h4>
+<p>Each Rancher release comes with a specific release of Helm based on the current state of the upstream Kubernetes add-ons repo, however you can upgrade the helm components at any time based on your requirements.</p>
+
+<p>Helm has two versioned components, the client (helm) and the server (tiller). For best results it is recommended to run the same version of the client and server. Upgrading the client can be done by downloading a newer binary on your local system. The client can then be used to upgrade the server component to the matching version by running the following:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ helm init --upgrade
+
+Tiller (the helm server side component) has been upgraded to the current version.
+Happy Helming!
+</code></pre>
+</div>
+<p><strong>NOTE</strong> The CLI built into the Rancher UI has its own copy of the <code class="highlighter-rouge">helm</code> client, so upgrading the server without upgrading this client may break functionality with the UI based CLI until Rancher releases an updated version.</p>
+
+<h4 id="using-helm">Using Helm</h4>
+
+<p>As with all package managers, before using helm, we should verify that the Charts are up-to-date.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">&gt; </span>helm repo update
+
+Hang tight <span class="k">while </span>we grab the latest from your chart repositories...
+...Successfully got an update from the <span class="s2">"stable"</span> chart repository
+Update Complete. â Happy Helming!â
+</code></pre>
+</div>
+
+<p>Kubernetes has its own official Helm charts that can be used directly. We’ll walk through an example of installing a Wordpress Chart on Kuberenetes.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> As Charts are updated in Helm, our versions may not match with the latest ones. You should always install the latest versions.</p>
+</blockquote>
+
+<p>First, we’ll start by using <code class="highlighter-rouge">helm search</code> to find the available Charts.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">&gt; </span>helm search
+NAME                    VERSION DESCRIPTION
+stable/drupal           0.3.4   One of the most versatile open <span class="nb">source </span>content m...
+stable/jenkins          0.1.1   A Jenkins Helm chart <span class="k">for </span>Kubernetes.
+stable/mariadb          0.5.2   Chart <span class="k">for </span>MariaDB
+stable/mysql            0.1.1   Chart <span class="k">for </span>MySQL
+stable/redmine          0.3.3   A flexible project management web application.
+stable/wordpress        0.3.1   Web publishing platform <span class="k">for </span>building blogs and ...
+</code></pre>
+</div>
+
+<p>You can immediately install the Chart directly from the Helm repository, but we are going to fetch the Wordpress Chart to examine the options available to deploy the chart.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>helm fetch stable/wordpress
+<span class="gp">$ </span>tar xzvf wordpress-<span class="k">*</span>.tgz
+<span class="gp">$ </span><span class="nb">cd </span>wordpress
+</code></pre>
+</div>
+<p>You can see the available options for the Wordpress Chart by examining the <code class="highlighter-rouge">values.yaml</code> file. This file includes all the variables that are used in the Chart. By opening the file in your favorite text editor, you can see there are multiple settings.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>image: bitnami/wordpress:4.7-r0
+imagePullPolicy: IfNotPresent
+wordpressUsername: user
+<span class="c"># wordpressPassword:</span>
+wordpressEmail: user@example.com
+wordpressFirstName: FirstName
+wordpressLastName: LastName
+wordpressBlogName: User<span class="s1">'s Blog!
+....
+</span></code></pre>
+</div>
+
+<p>In the file in Wordpress, you will see that persistent storage is enabled by default. The default value is using a storage class to dynamically provision persistent volumes, which is called <code class="highlighter-rouge">default</code>. In order to get started with dynamically provisioned persistent storage in Kubernetes on Rancher, please read the docs on <a href="/docs/rancher/v1.6/en/kubernetes/storage">how storage works in Rancher</a>.</p>
+
+<p>If persistent storage is not required in your use case, then we can disable the persistent storage when installing the Chart.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>helm install --name wordpress --set mariadb.persistence.enabled<span class="o">=</span><span class="nb">false</span>,persistence.enabled<span class="o">=</span><span class="nb">false </span>stable/wordpress
+NAME:   wordpress
+LAST DEPLOYED: Fri Apr 21 16:46:18 2017
+NAMESPACE: default
+STATUS: DEPLOYED
+
+RESOURCES:
+<span class="gp">==&gt; </span>v1/Secret
+NAME                TYPE      DATA      AGE
+wordpress-mariadb   Opaque    2         2s
+wordpress-wordpress   Opaque    2         2s
+
+<span class="gp">==&gt; </span>v1/ConfigMap
+NAME                DATA      AGE
+wordpress-mariadb   1         2s
+
+<span class="gp">==&gt; </span>v1/Service
+NAME                  CLUSTER-IP      EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>                      AGE
+wordpress-wordpress   10.43.218.155   &lt;pending&gt;     80:32247/TCP,443:31795/TCP   2s
+wordpress-mariadb   10.43.57.189   &lt;none&gt;    3306/TCP   2s
+
+<span class="gp">==&gt; </span>extensions/Deployment
+NAME                  DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+wordpress-wordpress   1         1         1            0           2s
+wordpress-mariadb   1         1         1         0         2s
+
+
+NOTES:
+1. Get the WordPress URL:
+
+  NOTE: It may take a few minutes <span class="k">for </span>the LoadBalancer IP to be available.
+        Watch the status with: <span class="s1">'kubectl get svc --namespace default -w wordpress-wordpress'</span>
+
+  <span class="nb">export </span><span class="nv">SERVICE_IP</span><span class="o">=</span><span class="k">$(</span>kubectl get svc --namespace default wordpress-wordpress -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.status.loadBalancer.ingress[0].ip}'</span><span class="k">)</span>
+  <span class="nb">echo </span>http://<span class="nv">$SERVICE_IP</span>/admin
+
+2. Login with the following credentials to see your blog
+
+  <span class="nb">echo </span>Username: user
+  <span class="nb">echo </span>Password: <span class="k">$(</span>kubectl get secret --namespace default wordpress-wordpress -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s2">"{.data.wordpress-password}"</span> | base64 --decode<span class="k">)</span>
+</code></pre>
+</div>
+
+<p>You will notice a <code class="highlighter-rouge">NOTES</code> section that will help you get started with the installed Wordpress Chart. The notes include information about how to get the WordPress URL and how to login to the blog with the default credentials.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">export </span><span class="nv">SERVICE_IP</span><span class="o">=</span><span class="k">$(</span>kubectl get svc --namespace default wordpress-wordpress -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.status.loadBalancer.ingress[0].ip}'</span><span class="k">)</span>
+<span class="gp">$ </span><span class="nb">echo </span>http://<span class="nv">$SERVICE_IP</span>/admin
+http://x.x.x.x/admin
+
+<span class="gp">$ </span><span class="nb">echo </span>Username: user
+<span class="gp">$ </span><span class="nb">echo </span>Password: <span class="k">$(</span>kubectl get secret --namespace default wordpress-wordpress -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s2">"{.data.wordpress-password}"</span> | base64 --decode<span class="k">)</span>
+Username: user
+Password: 58wYgIT06m
+</code></pre>
+</div>
+
+<p>By accessing the URL displayed, you will be able to start using Wordpress on Kubernetes and log in with the provided credentials.</p>
+
+<h4 id="using-persisent-storage-with-a-helm-chart">Using Persisent Storage With a Helm Chart</h4>
+
+<p>If you have set up <a href="/docs/rancher/v1.6/en/kubernetes/storage">persistent storage in Rancher</a>, you will be able to create storage classes on Kubernetes. In the next example, we will use the same Wordpress Chart and choose to use persistent storage on AWS.</p>
+
+<p>The following pre-requisites would need to be configured:</p>
+
+<ul>
+  <li>Kubernetes is configured to use <code class="highlighter-rouge">aws</code> as the <a href="/docs/rancher/v1.6/en/kubernetes/providers/#aws">cloud provider</a>.</li>
+  <li>All <a href="/docs/rancher/v1.6/en/hosts/">hosts</a> have been added into Rancher in AWS EC2 with the correct IAM policies.</li>
+  <li>A <a href="/docs/rancher/v1.6/en/kubernetes/storage/#dynamic_provisioning">storage class</a> named <code class="highlighter-rouge">default</code> is installed and configured to use AWS volumes.</li>
+</ul>
+
+<p>After Kubernetes is launched correctly and your storage class is created, you can deploy the Wordpress Chart to use your persistent storage.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>helm install --name wordpress stable/wordpress
+NAME:   wordpress
+LAST DEPLOYED: Fri Apr 21 17:12:35 2017
+NAMESPACE: default
+STATUS: DEPLOYED
+
+RESOURCES:
+<span class="gp">==&gt; </span>v1/Secret
+NAME                TYPE      DATA      AGE
+wordpress-mariadb   Opaque    2         2s
+wordpress-wordpress   Opaque    2         2s
+
+<span class="gp">==&gt; </span>v1/ConfigMap
+NAME                DATA      AGE
+wordpress-mariadb   1         2s
+
+<span class="gp">==&gt; </span>v1/Service
+NAME                CLUSTER-IP      EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>    AGE
+wordpress-mariadb   10.43.101.232   &lt;none&gt;        3306/TCP   2s
+wordpress-wordpress   10.43.250.75   &lt;pending&gt;   80:30296/TCP,443:30094/TCP   2s
+
+<span class="gp">==&gt; </span>extensions/Deployment
+NAME                  DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+wordpress-wordpress   1         1         1            0           2s
+wordpress-mariadb   1         1         1         0         2s
+
+<span class="gp">==&gt; </span>v1/PersistentVolumeClaim
+NAME                            STATUS    VOLUME                                     CAPACITY   ACCESSMODES   AGE
+wordpress-wordpress-wordpress   Bound     pvc-f396de3d-26a4-11e7-9213-02ee7a4cff8e   8Gi        RWO           2s
+wordpress-wordpress-apache   Bound     pvc-f3986989-26a4-11e7-9213-02ee7a4cff8e   1Gi       RWO       2s
+wordpress-mariadb   Bound     pvc-f399feb7-26a4-11e7-9213-02ee7a4cff8e   8Gi       RWO       2s
+
+
+NOTES:
+1. Get the WordPress URL:
+
+  NOTE: It may take a few minutes <span class="k">for </span>the LoadBalancer IP to be available.
+        Watch the status with: <span class="s1">'kubectl get svc --namespace default -w wordpress-wordpress'</span>
+
+  <span class="nb">export </span><span class="nv">SERVICE_IP</span><span class="o">=</span><span class="k">$(</span>kubectl get svc --namespace default wordpress-wordpress -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.status.loadBalancer.ingress[0].ip}'</span><span class="k">)</span>
+  <span class="nb">echo </span>http://<span class="nv">$SERVICE_IP</span>/admin
+
+2. Login with the following credentials to see your blog
+
+  <span class="nb">echo </span>Username: user
+  <span class="nb">echo </span>Password: <span class="k">$(</span>kubectl get secret --namespace default wordpress-wordpress -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s2">"{.data.wordpress-password}"</span> | base64 --decode<span class="k">)</span>
+</code></pre>
+</div>
+
+<p>You can see that new resources from using persistent storage in the Chart have been created.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">==&gt; </span>v1/PersistentVolumeClaim
+NAME                            STATUS    VOLUME                                     CAPACITY   ACCESSMODES   AGE
+wordpress-wordpress-wordpress   Bound     pvc-f396de3d-26a4-11e7-9213-02ee7a4cff8e   8Gi        RWO           2s
+wordpress-wordpress-apache   Bound     pvc-f3986989-26a4-11e7-9213-02ee7a4cff8e   1Gi       RWO       2s
+wordpress-mariadb   Bound     pvc-f399feb7-26a4-11e7-9213-02ee7a4cff8e   8Gi       RWO       2s
+</code></pre>
+</div>
+
+<p>You can verify that the persistent volumes have been created.<br />
+<code class="highlighter-rouge">bash
+$ kubectl get pv
+NAME                                       CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS    CLAIM                                        REASON    AGE
+pvc-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx   8Gi        RWO           Delete          Bound     default/wordpress-wordpress-wordpress                  4m
+pvc-yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy   1Gi        RWO           Delete          Bound     default/wordpress-wordpress-apache                     4m
+pvc-zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz   8Gi        RWO           Delete          Bound     default/wordpress-mariadb                              4m
+</code></p>
+
+<p>In this example, we have selected AWS as the <a href="/docs/rancher/v1.6/en/kubernetes/providers/#aws">cloud provider</a>, which will have created an ELB on AWS as a load balancer for your Wordpress Chart.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nb">export </span><span class="nv">SERVICE_IP</span><span class="o">=</span><span class="k">$(</span>kubectl get svc --namespace default wordpress-wordpress -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.status.loadBalancer.ingress[0].hostname}'</span><span class="k">)</span>
+<span class="gp">$ </span><span class="nb">echo </span>http://<span class="nv">$SERVICE_IP</span>/admin                                                                                         
+http://xxxxxxxxxxxxxx.us-west-2.elb.amazonaws.com/admin
+</code></pre>
+</div>
+
+<h3 id="skydns">SkyDNS</h3>
+
+<p>In Rancher, each service is given a name. Other services can communicate with a service using the DNS service name. The DNS service name is <code class="highlighter-rouge">&lt;service_name&gt;.&lt;namespace_name&gt;.svc.cluster.local</code>.</p>
+
+<p>Using the wordpress application launched in the helm example, you can get the name and namespace of Wordpress endpoint services.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&gt; kubectl get services
+
+NAME                  CLUSTER-IP      EXTERNAL-IP        PORT(S)                      AGE
+kubernetes            10.43.0.1       &lt;none&gt;             443/TCP                      22d
+wordpress-mariadb     10.43.101.232   &lt;none&gt;             3306/TCP                     1h
+wordpress-wordpress   10.43.250.75    xxxxxxxx...   80:30296/TCP,443:30094/TCP   1h
+
+&gt; kubectl describe services/wordpress-wordpress
+Name:			wordpress-wordpress
+Namespace:		default
+Labels:			app=wordpress-wordpress
+			      chart=wordpress-0.4.2
+			      heritage=Tiller
+			      release=wordpress
+Selector:		app=wordpress-wordpress
+Type:			LoadBalancer
+IP:			10.43.250.75
+LoadBalancer Ingress:	xxxxxxxxxxxxxxxxxxxx.elb.amazonaws.com
+Port:			http	80/TCP
+NodePort:		http	30296/TCP
+Endpoints:		10.42.122.207:80
+Port:			https	443/TCP
+NodePort:		https	30094/TCP
+Endpoints:		10.42.122.207:443
+Session Affinity:	None
+No events.
+</code></pre>
+</div>
+
+<p>The wordpress application is named <code class="highlighter-rouge">wordpress</code>. For this instance, the DNS service name is <code class="highlighter-rouge">wordpress-wordpress.default.svc.cluster.local</code>.</p>
+
+
+          <footer class="clearfix">
+            <div class="copyright pull-left">Copyright &copy; 2014-2017 <a href="http://rancher.com">Rancher Labs</a>.  All Rights Reserved.</div>
+            <a class="btn btn-primary pull-right" href="https://github.com/rancher/rancher.github.io/tree/master/rancher/v2.0/en/kubernetes/addons/index.md">Edit this page <i class="fa fa-pencil"></i></a>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <script src="/docs/vendor/jquery.js?t=2017-09-13 18:12:52 -0700"></script>
+    <script src="/docs/js/jquery.slicknav.min.js?t=2017-09-13 18:12:52 -0700"></script>
+    <script src="/docs/js/rancher-docs.js?t=2017-09-13 18:12:52 -0700"></script>
+
+    <!-- Start of Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56382716-3', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <!-- End of Google Analytics -->
+
+    <!-- Start of Async HubSpot Analytics Code -->
+    <script type="text/javascript">
+    (function(d,s,i,r) {
+    if (d.getElementById(i)){return;}
+    var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
+    n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/468859.js';
+    e.parentNode.insertBefore(n, e);
+    })(document,"script","hs-analytics",300000);
+    </script>
+    <!-- End of Async HubSpot Analytics Code -->
+  </body>
+</html>
+

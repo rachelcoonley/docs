@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Volumes in Rancher</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Documentation for Rancher">
+    <link href="/docs/favicon.png" rel="shortcut icon" type="image/png" sizes="16x16">
+    <link href="/docs/css/syntax.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+    <link href="/docs/vendor/font-awesome/css/font-awesome.min.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+    <link href="/docs/vendor/lato/lato.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+    <link href="/docs/css/lacsso.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+    <link href="/docs/css/slicknav.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+    <link href="/docs/css/rancher-docs.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+  </head>
+  <body class="bg-default">
+    <div class="row body">
+      <header id="header" class="section">
+        <nav class="row" role="navigation">
+          <div class="col span-3">
+          <a class="navbar-brand" href="/"><img src="/docs/img/rancher-logo-nopadding.svg" width="200px" style="padding-left: 20px" /></a>
+          </div>
+
+          <div class="col span-5 offset-3">
+            <!--Start Google Search-->
+            <div class="gcse-search" id="google-search"></div>
+            <script>
+              var match = window.location.pathname.match(/\/rancher\/([^\/]+)/);
+              if ( match ) {
+                document.getElementById('google-search').setAttribute('data-defaultToRefinement', match[1]);
+              }
+
+              (function() {
+                var cx = '007896692384436596364:60akf3bfmxm';
+                var gcse = document.createElement('script');
+                gcse.type = 'text/javascript';
+                gcse.async = true;
+                gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(gcse, s);
+              })();
+            </script>
+            <!--End Google Search-->
+          </div>
+        </nav>
+      </header>
+      <div class="col span-3 mt-0 mr-0 sidebar">
+
+<ul id="menu">
+    <li><a href="/docs/rancher/v1.6/en/">Overview</a></li>
+    <li><a href="/docs/rancher/v1.6/en/quick-start-guide/">Quick Start Guide</a></li>
+    <li>
+        <a href="#">Installing Rancher<i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/">Rancher Server</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#requirements">Rancher Server Requirements</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#rancher-server-tags">Rancher Server Tags</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#single-container">Launching Rancher Server</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#multi-nodes">Setting up HA</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#requirements-for-ha">HA Requirements</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#single-container-external-database">Using an External DB</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#single-container-bind-mount">Bind Mounted MySQL Volume</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#elb">Using an ELB in AWS</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#ldap">Using LDAP/AD with TLS</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#http-proxy">Behind an HTTP Proxy</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/selinux/">SELinux Requirements for RHEL/CentOS</a></li>
+          <li>
+               <a href="#">Basic SSL Configuration<i class="pull-right fa fa-angle-down"></i></a>
+               <ul>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/basic-ssl-config/#requirements">Requirements</a></li>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/basic-ssl-config/#example-nginx-configuration">Example NGINX Configuration</a></li>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/basic-ssl-config/#example-apache-configuration">Example Apache Configuration</a></li>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/basic-ssl-config/#example-haproxy-configuration">Example HAProxy Configuration</a></li>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/basic-ssl-config/#example-f5-big-ip-configuration">Example F5 BIG-IP Configuration</a></li>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/basic-ssl-config/#elb">Using an ELB in AWS with SSL</a></li>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/basic-ssl-config/#using-self-signed-certs-beta">Using Self Signed Certs</a></li>
+               </ul>
+          </li>
+          <li>
+               <a href="#">No Internet Access<i class="pull-right fa fa-angle-down"></i></a>
+               <ul>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/no-internet-access/#using-a-private-registry">Using a Private Registry</a></li>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/no-internet-access/#using-an-http-proxy">Using an HTTP Proxy</a></li>
+               </ul>
+          </li>
+        </ul>
+    </li>
+    <li>
+         <a href="#">Upgrading Rancher<i class="pull-right fa fa-angle-down"></i></a>
+         <ul>
+           <li><a href="/docs/rancher/v1.6/en/upgrading/">Upgrading Rancher</a></li>
+           <li><a href="/docs/rancher/v1.6/en/upgrading/#rancher-server-tags">Rancher Server Tags</a></li>
+           <li><a href="/docs/rancher/v1.6/en/upgrading/#infrastructure-services">Upgrading Infrastructure Services</a></li>
+           <li><a href="/docs/rancher/v1.6/en/upgrading/#multi-nodes">Upgrading Rancher HA Setup</a></li>
+           <li><a href="/docs/rancher/v1.6/en/upgrading/#single-container-external-database">Using an external DB</a></li>
+           <li><a href="/docs/rancher/v1.6/en/upgrading/#single-container-bind-mount">Bind Mounted MySQL Volume</a></li>
+           <li><a href="/docs/rancher/v1.6/en/upgrading/#rancher-server-with-no-internet-access">No Internet Access</a></li>
+        </ul>
+     </li>
+    <li>
+         <a href="#">Rancher Configuration<i class="pull-right fa fa-angle-down"></i></a>
+         <ul>
+           <li>
+                <a href="#">Access Control Providers<i class="pull-right fa fa-angle-down"></i></a>
+                <ul>
+                  <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#active-directory">Active Directory</a></li>
+                  <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#azure-ad">Azure AD</a></li>
+                  <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#github">Github</a></li>
+                  <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#local-authentication">Local Authentication</a></li>
+                  <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#openldap">OpenLDAP</a></li>
+                  <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#shibboleth">Shibboleth/SAML</a></li>
+                </ul>
+          </li>
+          <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#site-access">Rancher Site Access</a></li>
+          <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#restricting-concurrent-sessions">Restricting Concurrent Sessions</a></li>
+          <li><a href="/docs/rancher/v1.6/en/configuration/accounts/">Accounts</a></li>
+          <li><a href="/docs/rancher/v1.6/en/configuration/settings/#host-registration">Host Registration</a></li>
+          <li><a href="/docs/rancher/v1.6/en/configuration/settings/#catalog">Enabling Catalogs</a></li>
+          <li><a href="/docs/rancher/v1.6/en/configuration/machine-drivers/">Machine Drivers</a></li>
+        </ul>
+    </li>
+    <li>
+          <a href="#">Environments<i class="pull-right fa fa-angle-down"></i></a>
+          <ul>
+            <li><a href="/docs/rancher/v1.6/en/environments/">Managing Environments</a></li>
+            <li><a href="/docs/rancher/v1.6/en/environments/#what-is-an-environment-template">Environment Templates</a></li>
+            <li><a href="/docs/rancher/v1.6/en/environments/#membership-roles">Roles in an Environment</a></li>
+          </ul>
+    </li>
+    <li>
+        <a href="#">Hosts<i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/hosts/">Getting Started with Hosts</a></li>
+          <li><a href="/docs/rancher/v1.6/en/hosts/#supported-docker-versions">Supported Docker Versions</a></li>
+          <li><a href="/docs/rancher/v1.6/en/hosts/#host-labels">Adding Host Labels</a></li>
+          <li><a href="/docs/rancher/v1.6/en/hosts/#scheduler-ips">Adding Scheduler IPs</a></li>
+          <li><a href="/docs/rancher/v1.6/en/hosts/#hosts-behind-an-http-proxy">Behind an HTTP Proxy</a></li>
+          <li><a href="/docs/rancher/v1.6/en/hosts/custom/">Adding Custom Hosts</a></li>
+          <li>
+              <a href="#">Adding Cloud Provided Hosts<i class="pull-right fa fa-angle-down"></i></a>
+              <ul>
+                <li><a href="/docs/rancher/v1.6/en/hosts/amazon/">Adding Amazon EC2 Hosts</a></li>
+                <li><a href="/docs/rancher/v1.6/en/hosts/azure/">Adding Azure Hosts</a></li>
+                <li><a href="/docs/rancher/v1.6/en/hosts/digitalocean/">Adding DigitalOcean Hosts</a></li>
+                <li><a href="/docs/rancher/v1.6/en/hosts/exoscale/">Adding Exoscale Hosts</a></li>
+                <li><a href="/docs/rancher/v1.6/en/hosts/packet/">Adding Packet Hosts</a></li>
+                <li><a href="/docs/rancher/v1.6/en/hosts/rackspace/">Adding Rackspace Hosts</a></li>
+                <li><a href="/docs/rancher/v1.6/en/hosts/other/">Adding Hosts from Other Cloud Providers</a></li>
+              </ul>
+          </li>
+          <li><a href="/docs/rancher/v1.6/en/hosts/#accessing-hosts-from-the-cloud-providers">Accessing Cloud Provided Hosts</a></li>
+          <li><a href="/docs/rancher/v1.6/en/hosts/#removing-hosts">Removing Hosts</a></li>
+        </ul>
+    </li>
+    <li>
+      <a href="#">Registries<i class="pull-right fa fa-angle-down"></i></a>
+      <ul>
+        <li><a href="/docs/rancher/v1.6/en/environments/registries/">Adding Private Registries</a></li>
+        <li><a href="/docs/rancher/v1.6/en/environments/registries/#insecure-registries">Insecure Registries</a></li>
+        <li><a href="/docs/rancher/v1.6/en/environments/registries/#self-signed-certificates">Self Signed Certificates</a></li>
+        <li><a href="/docs/rancher/v1.6/en/environments/registries/#using-amazons-ecr-registry">Using Amazon's ECR</a></li>
+        <li><a href="/docs/rancher/v1.6/en/environments/registries/#using-google-container-registry">Using Google Container Registry</a></li>
+        <li><a href="/docs/rancher/v1.6/en/environments/registries/#changing-the-default-registry">Changing the Default Registry</a></li>
+        <li><a href="/docs/rancher/v1.6/en/environments/registries/#limiting-which-registries-can-be-used">Limiting Registries</a></li>
+      </ul>
+    </li>
+    <li><a href="/docs/rancher/v1.6/en/environments/certificates/">Certificates</a></li>
+    <li>
+      <a href="#">Infrastructure Services<i class="pull-right fa fa-angle-down"></i></a>
+          <ul>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/">Infrastructure Services</a></li>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/networking/">Networking</a></li>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/network-policy/">Network Policies</a></li>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/load-balancer">Load Balancer</a></li>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/dns-service/">DNS Service</a></li>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/metadata-service/">Metadata Service</a></li>
+              <li>
+                  <a href="#">Persistent Storage Service<i class="pull-right fa fa-angle-down"></i></a>
+                  <ul>
+                      <li><a href="/docs/rancher/v1.6/en/rancher-services/storage-service/">Persistent Storage Service</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/rancher-services/storage-service/rancher-nfs/">Rancher NFS</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/rancher-services/storage-service/rancher-ebs/">Rancher EBS</a></li>
+                  </ul>
+              </li>
+              <li>
+                  <a href="#">External Scheduler<i class="pull-right fa fa-angle-down"></i></a>
+                  <ul>
+                      <li><a href="/docs/rancher/v1.6/en/rancher-services/scheduler/">External Scheduler</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/rancher-services/scheduler/#multiple-ips">Scheduling against multiple IPs</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/rancher-services/scheduler/#resource-constraints">Scheduling with Resource Constraints</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/rancher-services/scheduler/#restrict-services-on-host">Scheduling only Specific Services on a Host</a></li>
+                  </ul>
+              </li>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/audit-log/">Audit Logging</a></li>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/service-accounts/">Service Accounts</a></li>
+           </ul>
+    </li>
+    <li>
+          <a href="#">Cattle<i class="pull-right fa fa-angle-down"></i></a>
+          <ul>
+                <li><a href="/docs/rancher/v1.6/en/cattle/stacks/">Stacks</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/adding-services/">Services</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/volumes/">Volumes</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/">Load Balancers</a></li>
+                <li>
+                    <a href="#">Load Balancer Options in the UI<i class="pull-right fa fa-angle-down"></i></a>
+                    <ul>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#adding-a-load-balancer-in-the-ui">Adding Load Balancers</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#service-rule">Targeting Specific Services</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#selector-rule">Targeting Services based on Selectors</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#ssl-termination">SSL Termination</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#stickiness-policy-for-load-balancers">Stickiness Policy</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#custom-haproxy-configuration">Custom HAProxy Configuration</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#labelsscheduling-load-balancers">Labels and Scheduling</a></li>
+                      </ul>
+                </li>
+                <li>
+                    <a href="#">Load Balancer Options with CLI and Compose<i class="pull-right fa fa-angle-down"></i></a>
+                    <ul>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#adding-a-load-balancer-with-rancher-compose">Adding Load Balancers</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#source-ports">Defining Source Ports</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#port-rules">Port Rules</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#certificates">Certificates</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#custom-configuration">Custom HAProxy Configuration</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#stickiness-policy">Stickiness Policy</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#load-balancer-example-l7">Example of L7 Load Balancer</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#internal-load-balancer-example">Example of Internal Load Balancer</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#ssl-termination-example">Example of SSL Termination with a Load Balancer</a></li>
+                      </ul>
+                </li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/adding-external-services/">External Services</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/adding-service-alias/">Service Alias</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/health-checks/">Health Checks</a></li>
+                <li>
+                    <a href="#">Scheduling Services<i class="pull-right fa fa-angle-down"></i></a>
+                    <ul>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/scheduling/">Scheduling</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/scheduling/#scheduling-options-in-the-ui">Scheduling in the UI</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/scheduling/#adding-labels-in-rancher-compose">Scheduling in Rancher Compose</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/scheduling/#table-of-scheduling-labels">Table of Scheduling Labels</a></li>
+                    </ul>
+                </li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/upgrading/">Upgrading Services</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/internal-dns-service/">Internal DNS Service in Cattle Environments</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/external-dns-service/">External DNS Service</a></li>
+                <li>
+                    <a href="#">Rancher-Compose<i class="pull-right fa fa-angle-down"></i></a>
+                    <ul>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/rancher-compose/">Rancher Compose</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/rancher-compose/commands/">Commands and Options</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/rancher-compose/environment-interpolation/">Environment Interpolation</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/rancher-compose/build/">Building with AWS S3</a></li>
+                    </ul>
+                </li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/secrets/">Secrets - Experimental</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/webhook-service/">Webhooks</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/labels/">Labels in Cattle</a></li>
+          </ul>
+    </li>
+    <li>
+          <a href="#">Kubernetes<i class="pull-right fa fa-angle-down"></i></a>
+          <ul>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/">Launching Kubernetes</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/resiliency-planes/">Resiliency Planes</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/providers/">Cloud Providers</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/private-registry/">Private Registry</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/rbac/">RBAC</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/disaster-recovery/">Disaster Recovery</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/backups/">Backups</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/storage/">Persistent Storage</a></li>
+              <li>
+                  <a href="#">Add-ons Support<i class="pull-right fa fa-angle-down"></i></a>
+                  <ul>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/addons/">Add-ons Support</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/addons/#helm">Helm</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/addons/#skydns">SkyDNS</a></li>
+                  </ul>
+              </li>
+              <li>
+                  <a href="#">Ingress Support and Options<i class="pull-right fa fa-angle-down"></i></a>
+                  <ul>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/">Ingress Support</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#host-based-routing">Host Based Routing</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#path-based-routing">Path Based Routing</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#scale-and-other-port">Multiple Load Balancers and Selecting Ports</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#tls">Using TLS</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#blocking-http">Blocking HTTP</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#custom-haproxy">Custom HAProxy</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#scheduled-globally">Scheduling on all Hosts</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#host-scheduling">Scheduling on a specific Host</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#only-local">Targeting Only Containers on the Same Host</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#prefer-local">Prioritizing Containers on the Same Host</a></li>
+                  </ul>
+              </li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/upgrading/">Upgrading Kubernetes</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/deleting/">Deleting Kubernetes</a></li>
+
+          </ul>
+    </li>
+    <li><a href="/docs/rancher/v1.6/en/mesos/">Mesos</a></li>
+    <li><a href="/docs/rancher/v1.6/en/swarm/">Swarm - Experimental </a></li>
+    <li><a href="/docs/rancher/v1.6/en/windows/">Windows - Experimental</a></li>
+    <li><a href="/docs/rancher/v1.6/en/native-docker/">Using Native Docker CLI</a></li>
+    <li>
+            <a href="#">Rancher Catalog<i class="pull-right fa fa-angle-down"></i></a>
+            <ul>
+                <li><a href="/docs/rancher/v1.6/en/catalog/">Catalog</a></li>
+                <li><a href="/docs/rancher/v1.6/en/catalog/private-catalog/">Creating Private Catalogs</a></li>
+            </ul>
+        </li>
+    <li><a href="#">Rancher CLI<i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+            <li><a href="/docs/rancher/v1.6/en/cli/">Rancher CLI</a></li>
+            <li><a href="/docs/rancher/v1.6/en/cli/commands/">Commands and Options</a></li>
+            <li><a href="/docs/rancher/v1.6/en/cli/variable-interpolation/">Variable Interpolation</a></li>
+        </ul>
+    </li>
+    <li><a href="/docs/rancher/v1.6/en/api/v2-beta/">API Documentation</a></li>
+    <li><a href="/docs/rancher/v1.6/en/contributing/">Contributing to Rancher</a></li>
+    <li>
+        <a href="#">FAQs<i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+            <li><a href="/docs/rancher/v1.6/en/faqs/server/">FAQs about Rancher Server</a></li>
+            <li><a href="/docs/rancher/v1.6/en/faqs/agents/">FAQs about Rancher Agents/Hosts</a></li>
+            <li><a href="/docs/rancher/v1.6/en/faqs/troubleshooting/">Troubleshooting FAQS</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">Docs Archive<i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+            <li><a href="/docs/rancher/v1.5/en/">Rancher v1.5</a></li>
+            <li><a href="/docs/rancher/v1.4/en/">Rancher v1.4</a></li>
+            <li><a href="/docs/rancher/v1.3/en/">Rancher v1.3</a></li>
+            <li><a href="/docs/rancher/v1.2/en/">Rancher v1.2</a></li>
+            <li><a href="/docs/rancher/v1.1/en/">Rancher v1.1</a></li>
+            <li><a href="/docs/rancher/v1.0/en/">Rancher v1.0</a></li>
+        </ul>
+    </li>
+</ul>
+
+      </div>
+
+      <div class="col span-8">
+        <div class="content-container">
+          <h2 id="volumes">Volumes</h2>
+<hr />
+
+<h3 id="overview">Overview</h3>
+
+<p>Persistent volumes are a very important part of a stateful application. Rancher makes working with volumes in multi-host environments a simple process.</p>
+
+<h4 id="terminology">Terminology</h4>
+
+<p><code class="highlighter-rouge">Volume Plugin</code> and <code class="highlighter-rouge">Volume Driver</code> are used interchangeably in Docker and Rancher documentation. They are referring to the same thing: a <a href="https://docs.docker.com/engine/extend/plugins_volume/">Docker Volume Plugin</a> that provides local or shared persistent volumes to a Docker container. Rancher Volume Plugins (Drivers) are currently implemented as Docker Volume Plugins and may be interacted with the <code class="highlighter-rouge">docker volume</code> command on any host, but depending on the storage technology, volumes may be accessed by one, some, or all hosts in an environment. Rancher handles the complexity of coordinating shared volumes across hosts. Examples are: rancher-nfs, rancher-ebs, pxd (portworx).</p>
+
+<p>A <code class="highlighter-rouge">Storage Driver</code> pertains to how containers and images are stored and managed on your Docker hosts. Examples are: aufs, btrfs, zfs, devicemapper. These drivers are beyond the scope of Rancher. Rancher UI conflates the term but is actually referring to <code class="highlighter-rouge">Volume Driver</code> or <code class="highlighter-rouge">Volume Plugin</code>. More information about storage drivers is available <a href="https://docs.docker.com/engine/userguide/storagedriver/imagesandcontainers/">here</a>.</p>
+
+<h3 id="managing-volumes">Managing Volumes</h3>
+
+<p>In this section you’re going to learn how to create persistent volumes that may be shared between containers. <a href="/docs/rancher/v1.6/en/cli/">Rancher CLI</a> will be used exclusively in these subsections.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> The UI may be used to manage volumes for all volume drivers except <code class="highlighter-rouge">local</code>.</p>
+</blockquote>
+
+<h4 id="create-a-volume">Create a Volume</h4>
+
+<p>You can create a volume with the <code class="highlighter-rouge">rancher volume create</code> command.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rancher volume create --driver <span class="nb">local </span>app-data
+</code></pre>
+</div>
+
+<p>This will create a new local volume with name <code class="highlighter-rouge">app-data</code>. The name must start with an alphanumeric character, followed by <code class="highlighter-rouge">a-z0-9</code>, <code class="highlighter-rouge">_</code> (underscore), <code class="highlighter-rouge">.</code> (period) or <code class="highlighter-rouge">-</code> (hyphen).</p>
+
+<p>The <code class="highlighter-rouge">--driver</code> flag specifies the volume driver to use. Docker ships with a <code class="highlighter-rouge">local</code> volume driver. Volumes using this driver persist their data to the host filesystem and are accessible to any container on the same host. When using the <code class="highlighter-rouge">local</code> volume driver, no containers on other hosts will share the same volume.</p>
+
+<h4 id="list-volumes">List Volumes</h4>
+
+<p>You can list volumes in an environment.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rancher volume ls
+</code></pre>
+</div>
+
+<p>If you created the <code class="highlighter-rouge">app-data</code> volume from the previous section, you may wonder why it wasn’t listed. You can include <code class="highlighter-rouge">inactive</code> volumes with the <code class="highlighter-rouge">--all</code> or <code class="highlighter-rouge">-a</code> flag.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rancher volume ls --all
+</code></pre>
+</div>
+
+<h4 id="delete-a-volume">Delete a Volume</h4>
+
+<p>You can delete a volume with the <code class="highlighter-rouge">rancher volume rm</code> command.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rancher volume rm app-data
+</code></pre>
+</div>
+
+<h4 id="volume-states">Volume States</h4>
+
+<p>Volumes have seven distinct states: <code class="highlighter-rouge">inactive</code>, <code class="highlighter-rouge">activating</code>, <code class="highlighter-rouge">active</code>, <code class="highlighter-rouge">deactivating</code>, <code class="highlighter-rouge">detached</code>, <code class="highlighter-rouge">removing</code> and <code class="highlighter-rouge">removed</code>.</p>
+
+<p>A newly-created volume is in <code class="highlighter-rouge">inactive</code> state until a container attempts to attach to it.</p>
+
+<p>When a container is created, associated volumes enter <code class="highlighter-rouge">activating</code> state. Once the container enters the <code class="highlighter-rouge">running</code> phase, its volumes enter <code class="highlighter-rouge">active</code> state. Containers attaching to an already <code class="highlighter-rouge">active</code> volume will not impact that volume’s state.</p>
+
+<p>When all containers attached to a volume are marked for deletion, the volume enters a <code class="highlighter-rouge">deactivating</code> state. Once the conatiners are deleted, the volume enters <code class="highlighter-rouge">detached</code> state.</p>
+
+<p>When a volume is marked for deletion, it enters a <code class="highlighter-rouge">removing</code> state. Once the data is deleted from the host(s), it enters <code class="highlighter-rouge">removed</code> state. Removed volumes will not appear when listing volumes, but they continue to exist in Rancher API for a period of time for debugging and auditing purposes.</p>
+
+<h3 id="volume-scopes">Volume Scopes</h3>
+
+<p>Volumes are able to have different scopes, which refer to the level at which the volume is managed by Rancher.</p>
+
+<p>Currently, using Rancher Compose files supports creating the different types of volumes. Scoped volumes must be defined in the top-level <code class="highlighter-rouge">volumes</code> section of a <code class="highlighter-rouge">docker-compose.yml</code> file. By default, a stack scoped volume is created, but different scopes can be created based on modifiers in the top-level definition.</p>
+
+<p>If the top-level definition is omitted, volumes behave differently. Please <a href="#v1-compose">read more</a> for details.</p>
+
+<p>The UI only creates volumes that are environment scoped.</p>
+
+<h4 id="stack-scoped-volumes">Stack Scoped Volumes</h4>
+
+<p>A stack scoped volume is owned and managed by the stack in which it is defined. The primary benefit is that the volume lifecycle is automatically managed by Rancher as part of the stack lifecycle.</p>
+
+<p>With a stack scoped volume, services referencing the same volume in a stack would share the same volume. A service outside the stack could not use the same volume.</p>
+
+<p>In Rancher, stack scoped volumes are named with the stack name as a prefix to indicate which stack the volume is scoped to and suffixed with a random number to guarantee no duplication. When referencing the volume, you still use the original volume name. For example, if you create a volume called <code class="highlighter-rouge">foo</code> in <code class="highlighter-rouge">stackA</code>, the volume name in the UI and on your hosts will be <code class="highlighter-rouge">stackA_foo_&lt;randomNumber&gt;</code>, but to use the same volume in your service, you would use the name <code class="highlighter-rouge">foo</code>.</p>
+
+<h5 id="example-of-creating">Example of Creating</h5>
+
+<p>In the following example, the volume <code class="highlighter-rouge">data</code> will be created at the stack scoped volume.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> There is no other modifiers in the top-level definition of the volume, therefore, the volume is stack scoped.</p>
+</blockquote>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2'</span>
+<span class="s">services</span><span class="pi">:</span>
+  <span class="s">redis</span><span class="pi">:</span>
+    <span class="s">image</span><span class="pi">:</span> <span class="s">redis:3.0.7</span>
+    <span class="s">volumes</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">data:/data</span>
+<span class="s">volumes</span><span class="pi">:</span>
+  <span class="s">data</span><span class="pi">:</span>
+    <span class="s">driver</span><span class="pi">:</span> <span class="s">local</span>
+</code></pre>
+</div>
+
+<p>In the example above, we have specifically called out the driver to be a <code class="highlighter-rouge">local</code> driver. By default, the driver for a volume is <code class="highlighter-rouge">local</code>. The most succinct way to define the <code class="highlighter-rouge">data</code> volume is with an empty structure <code class="highlighter-rouge"><span class="p">{}</span></code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">volumes</span><span class="pi">:</span>
+  <span class="s">data</span><span class="pi">:</span> <span class="pi">{}</span>
+</code></pre>
+</div>
+
+<p>After creating this stack through Rancher CLI, you would be able to <a href="#list-volumes">list the volume</a> and identify the <code class="highlighter-rouge">data</code> volume exists. The name of the volume would be <code class="highlighter-rouge">&lt;STACK_NAME&gt;_data_&lt;RANDOM_NUMBER&gt;</code>.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> Stack scoped volumes could be mounted by other stacks. Stack scope is not a security mechanism. It is solely for managing the lifecycle of the volume.</p>
+</blockquote>
+
+<h4 id="environment-scoped-volumes">Environment Scoped Volumes</h4>
+
+<p>An environment scoped volume may be shared by all containers in an environment. Rancher schedules a container appropriately based on the hosts that have access to its assigned volumes.</p>
+
+<p>Environment scope volumes are not automatically shared across all hosts in an environment. You need to be using a shared volume driver such as <code class="highlighter-rouge">rancher-nfs</code> to accomplish that. This means that an environment scoped volume using the <code class="highlighter-rouge">local</code> driver will only be available on a single host and any container using that volume will be scheduled to that host.</p>
+
+<p>Rancher requires that an environment volume exists prior to creating a service that consumes it. Any installed volume driver can be used.</p>
+
+<p>The practical benefit of this scope is the ability to easily share data between different software services/stacks whose lifecycles are independently managed. The user is given full control and must <a href="#managing-volumes">manage the volumes</a> themselves.</p>
+
+<h5 id="shared-environment-scope-volume-example">Shared Environment Scope Volume Example</h5>
+
+<p>First, <a href="#create-a-volume">create the environment scope volume</a> to be shared between stacks.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rancher volume create --driver <span class="nb">local </span>redis-data-external
+</code></pre>
+</div>
+
+<p>In order to create an environment scoped volume, in the top-level definition of the volume, you must add <code class="highlighter-rouge">external: true</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2'</span>
+<span class="s">services</span><span class="pi">:</span>
+  <span class="s">redis</span><span class="pi">:</span>
+    <span class="s">image</span><span class="pi">:</span> <span class="s">redis:3.0.7</span>
+    <span class="s">volumes</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">redis-data-external:/data</span>
+<span class="s">volumes</span><span class="pi">:</span>
+  <span class="s">redis-data-external</span><span class="pi">:</span>
+    <span class="s">driver</span><span class="pi">:</span> <span class="s">local</span>
+    <span class="s">external</span><span class="pi">:</span> <span class="s">true</span>  <span class="c1"># Without this definition, a stack scoped volume will be created.</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p><strong>Note:</strong> If <code class="highlighter-rouge">external: true</code> is not part of the top-level definition of the volume, the volume will be <a href="#stack-scope">stack scoped</a>.</p>
+</blockquote>
+
+<p>After creating this stack through Rancher CLI, you would be able to <a href="#list-volumes">list the volume</a> and identify the <code class="highlighter-rouge">redis-data-external</code> volume exists and is <code class="highlighter-rouge">active</code>.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> Scaling a service up or down mounts or unmounts the same shared volume.</p>
+</blockquote>
+
+<p>Any new stack within the environment may attach to the same <code class="highlighter-rouge">redis-data-external</code> volume. The easiest way is to copy the top-level volume definition verbatim.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">volumes</span><span class="pi">:</span>
+  <span class="s">redis-data-external</span><span class="pi">:</span>
+    <span class="s">driver</span><span class="pi">:</span> <span class="s">local</span>
+    <span class="s">external</span><span class="pi">:</span> <span class="s">true</span>
+</code></pre>
+</div>
+
+<h3 id="v1-vs-v2-compose">V1 vs V2 Compose</h3>
+
+<p>Up until this point, we’ve discussed volumes in the context of <a href="https://docs.docker.com/compose/compose-file/compose-file-v2/#volumes-volume_driver">Docker V2 Compose</a>. If you omit the top-level definition in a V2 compose file, it acts as a Docker V1 Compose volume.</p>
+
+<p><a href="https://docs.docker.com/compose/compose-file/compose-file-v1/#volumes-volume_driver">Docker V1 Compose</a> may also be used. In V1 compose, there is no top-level volume section and volumes can only be defined within the context of a service. Rancher passes V1 volumes directly to Docker; as such, there are no scheduling guarantees and volumes are not automatically deleted. To bridge the gap and ensure containers are scheduled to the host where a V1 volume resides, <a href="/docs/rancher/v1.6/en/cattle/scheduling/#fields-1">scheduling affinities</a> may be used.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> V1 Compose should be avoided when possible.</p>
+</blockquote>
+
+<h4 id="example-of-v1-compose">Example of V1 Compose</h4>
+
+<p>Notice the absence of the volume section; this doesn’t exist in V1.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">etcd</span><span class="pi">:</span>
+  <span class="s">image</span><span class="pi">:</span> <span class="s">rancher/etcd:v2.3.7-11</span>
+  <span class="s">volumes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">etcd:/pdata</span>
+</code></pre>
+</div>
+
+<h4 id="heterogenerous-v1-and-v2-compose">Heterogenerous V1 and V2 Compose</h4>
+
+<p>Docker compose V2 is a superset of V1; the two schemas can be used interchangeably. Create an environment scope volume first.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rancher volume create --driver <span class="nb">local </span>etcd_backup
+</code></pre>
+</div>
+
+<p>In this example, <code class="highlighter-rouge">etcd_backup</code> is a V2 environment scope volume and <code class="highlighter-rouge">etcd</code> is a V1 volume. The absence of a volume definition implicitly makes <code class="highlighter-rouge">etcd</code> a V1 volume.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2'</span>
+<span class="s">services</span><span class="pi">:</span>
+  <span class="s">etcd</span><span class="pi">:</span>
+    <span class="s">image</span><span class="pi">:</span> <span class="s">rancher/etcd:v2.3.7-11</span>
+    <span class="s">environment</span><span class="pi">:</span>
+      <span class="s">EMBEDDED_BACKUPS</span><span class="pi">:</span> <span class="s1">'</span><span class="s">true'</span>
+      <span class="s">BACKUP_PERIOD</span><span class="pi">:</span> <span class="s">5s</span>
+      <span class="s">BACKUP_RETENTION</span><span class="pi">:</span> <span class="s">15s</span>
+    <span class="s">volumes</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">etcd:/pdata</span>
+    <span class="pi">-</span> <span class="s">etcd_backup:/data-backup</span>
+<span class="s">volumes</span><span class="pi">:</span>
+  <span class="s">etcd_backup</span><span class="pi">:</span>
+    <span class="s">driver</span><span class="pi">:</span> <span class="s">local</span>
+    <span class="s">external</span><span class="pi">:</span> <span class="s">true</span>
+</code></pre>
+</div>
+
+<p>Finally, if you define an empty volumes section, this will still treat the volume as a V1 volume. It is equivalent to completely omitting the volumes section.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2'</span>
+<span class="s">volumes</span><span class="pi">:</span> <span class="pi">{}</span>
+</code></pre>
+</div>
+
+
+          <footer class="clearfix">
+            <div class="copyright pull-left">Copyright &copy; 2014-2017 <a href="http://rancher.com">Rancher Labs</a>.  All Rights Reserved.</div>
+            <a class="btn btn-primary pull-right" href="https://github.com/rancher/rancher.github.io/tree/master/rancher/v2.0/en/cattle/volumes/index.md">Edit this page <i class="fa fa-pencil"></i></a>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <script src="/docs/vendor/jquery.js?t=2017-09-13 18:12:52 -0700"></script>
+    <script src="/docs/js/jquery.slicknav.min.js?t=2017-09-13 18:12:52 -0700"></script>
+    <script src="/docs/js/rancher-docs.js?t=2017-09-13 18:12:52 -0700"></script>
+
+    <!-- Start of Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56382716-3', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <!-- End of Google Analytics -->
+
+    <!-- Start of Async HubSpot Analytics Code -->
+    <script type="text/javascript">
+    (function(d,s,i,r) {
+    if (d.getElementById(i)){return;}
+    var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
+    n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/468859.js';
+    e.parentNode.insertBefore(n, e);
+    })(document,"script","hs-analytics",300000);
+    </script>
+    <!-- End of Async HubSpot Analytics Code -->
+  </body>
+</html>
+

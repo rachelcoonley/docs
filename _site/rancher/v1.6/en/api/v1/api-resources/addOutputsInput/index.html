@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Documentation for Rancher">
+    <link href="/docs/favicon.png" rel="shortcut icon" type="image/png" sizes="16x16">
+    <link href="/docs/css/syntax.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+    <link href="/docs/vendor/font-awesome/css/font-awesome.min.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+    <link href="/docs/vendor/lato/lato.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+    <link href="/docs/css/lacsso.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+    <link href="/docs/css/slicknav.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+    <link href="/docs/css/rancher-docs.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+  </head>
+  <body class="bg-default">
+    <div class="row body">
+      <header id="header" class="section">
+        <nav class="row" role="navigation">
+          <div class="col span-3">
+          <a class="navbar-brand" href="/"><img src="/docs/img/rancher-logo-nopadding.svg" width="200px" style="padding-left: 20px" /></a>
+          </div>
+
+          <div class="col span-5 offset-3">
+            <!--Start Google Search-->
+            <div class="gcse-search" id="google-search"></div>
+            <script>
+              var match = window.location.pathname.match(/\/rancher\/([^\/]+)/);
+              if ( match ) {
+                document.getElementById('google-search').setAttribute('data-defaultToRefinement', match[1]);
+              }
+
+              (function() {
+                var cx = '007896692384436596364:60akf3bfmxm';
+                var gcse = document.createElement('script');
+                gcse.type = 'text/javascript';
+                gcse.async = true;
+                gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(gcse, s);
+              })();
+            </script>
+            <!--End Google Search-->
+          </div>
+        </nav>
+      </header>
+      <div class="col span-3 mt-0 mr-0 sidebar">
+
+<ul id="menu">
+    <li><a href="/docs/rancher/v1.6/en/" >Rancher Documentation</a></li>
+    <li><a href="/docs/rancher/v1.6/en/api/v1/">How to use the API v1</a></li>
+    <li><a href="/docs/rancher/v1.6/en/api/v1/access-control/">Setting up Access Control using the API</a></li>
+    <li><a href="/docs/rancher/v1.6/en/api/v1/api-keys/">What are API keys</a></li>
+    <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/">API Resources</a></li>
+    <li><a href="/docs/rancher/v1.6/en/api/v1/common/">Common Resource Fields</a></li>
+    
+    <li>
+        <a href="#">Account <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/account/">Account</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/account/#create">Create</a></li>
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/account/#update">Update</a></li>
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/account/#delete">Delete</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/account/#activate">Activate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/account/#deactivate">Deactivate</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">Agent <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/agent/">Agent</a></li>
+              
+              
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/agent/#activate">Activate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/agent/#deactivate">Deactivate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/agent/#disconnect">Disconnect</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/agent/#reconnect">Reconnect</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">ApiKey <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/apiKey/">ApiKey</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/apiKey/#create">Create</a></li>
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/apiKey/#update">Update</a></li>
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/apiKey/#delete">Delete</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/apiKey/#activate">Activate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/apiKey/#deactivate">Deactivate</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">AuditLog <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/auditLog/">AuditLog</a></li>
+              
+              
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">Azureadconfig <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/azureadconfig/">Azureadconfig</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/azureadconfig/#create">Create</a></li>
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/azureadconfig/#update">Update</a></li>
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">Certificate <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/certificate/">Certificate</a></li>
+              
+              
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">ConfigItem <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/configItem/">ConfigItem</a></li>
+              
+              
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">ConfigItemStatus <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/configItemStatus/">ConfigItemStatus</a></li>
+              
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/configItemStatus/#update">Update</a></li>
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">Container <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/container/">Container</a></li>
+              
+              
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/container/#console">Console</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/container/#execute">Execute</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/container/#logs">Logs</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/container/#proxy">Proxy</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/container/#restart">Restart</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/container/#start">Start</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/container/#stop">Stop</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">Databasechangelog <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/databasechangelog/">Databasechangelog</a></li>
+              
+              
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/databasechangelog/#delete">Delete</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">Databasechangeloglock <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/databasechangeloglock/">Databasechangeloglock</a></li>
+              
+              
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/databasechangeloglock/#delete">Delete</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">DnsService <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/dnsService/">DnsService</a></li>
+              
+              
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/dnsService/#activate">Activate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/dnsService/#deactivate">Deactivate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/dnsService/#removeservicelink">Removeservicelink</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/dnsService/#rollback">Rollback</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/dnsService/#setservicelinks">Setservicelinks</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/dnsService/#upgrade">Upgrade</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">Environment <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/environment/">Environment</a></li>
+              
+              
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/environment/#activateservices">Activateservices</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/environment/#cancelrollback">Cancelrollback</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/environment/#cancelupgrade">Cancelupgrade</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/environment/#deactivateservices">Deactivateservices</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/environment/#exportconfig">Exportconfig</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/environment/#finishupgrade">Finishupgrade</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/environment/#rollback">Rollback</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">ExtensionPoint <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/extensionPoint/">ExtensionPoint</a></li>
+              
+              
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">ExternalHandler <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/externalHandler/">ExternalHandler</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/externalHandler/#create">Create</a></li>
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/externalHandler/#update">Update</a></li>
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/externalHandler/#activate">Activate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/externalHandler/#deactivate">Deactivate</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">ExternalHandlerExternalHandlerProcessMap <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/externalHandlerExternalHandlerProcessMap/">ExternalHandlerExternalHandlerProcessMap</a></li>
+              
+              
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/externalHandlerExternalHandlerProcessMap/#activate">Activate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/externalHandlerExternalHandlerProcessMap/#deactivate">Deactivate</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">ExternalHandlerProcess <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/externalHandlerProcess/">ExternalHandlerProcess</a></li>
+              
+              
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/externalHandlerProcess/#activate">Activate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/externalHandlerProcess/#deactivate">Deactivate</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">ExternalService <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/externalService/">ExternalService</a></li>
+              
+              
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/externalService/#activate">Activate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/externalService/#cancelrollback">Cancelrollback</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/externalService/#cancelupgrade">Cancelupgrade</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/externalService/#deactivate">Deactivate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/externalService/#finishupgrade">Finishupgrade</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/externalService/#rollback">Rollback</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/externalService/#upgrade">Upgrade</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">Githubconfig <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/githubconfig/">Githubconfig</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/githubconfig/#create">Create</a></li>
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/githubconfig/#update">Update</a></li>
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">HaConfig <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/haConfig/">HaConfig</a></li>
+              
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/haConfig/#update">Update</a></li>
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/haConfig/#createscript">Createscript</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">HaConfigInput <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/haConfigInput/">HaConfigInput</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/haConfigInput/#create">Create</a></li>
+              
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">Host <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/host/">Host</a></li>
+              
+              
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/host/#activate">Activate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/host/#deactivate">Deactivate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/host/#dockersocket">Dockersocket</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">HostApiProxyToken <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/hostApiProxyToken/">HostApiProxyToken</a></li>
+              
+              
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">Identity <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/identity/">Identity</a></li>
+              
+              
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">Ldapconfig <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/ldapconfig/">Ldapconfig</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/ldapconfig/#create">Create</a></li>
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/ldapconfig/#update">Update</a></li>
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">LoadBalancerService <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/loadBalancerService/">LoadBalancerService</a></li>
+              
+              
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/loadBalancerService/#activate">Activate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/loadBalancerService/#addservicelink">Addservicelink</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/loadBalancerService/#cancelrollback">Cancelrollback</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/loadBalancerService/#cancelupgrade">Cancelupgrade</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/loadBalancerService/#deactivate">Deactivate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/loadBalancerService/#finishupgrade">Finishupgrade</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/loadBalancerService/#removeservicelink">Removeservicelink</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/loadBalancerService/#rollback">Rollback</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/loadBalancerService/#setservicelinks">Setservicelinks</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/loadBalancerService/#upgrade">Upgrade</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">LocalAuthConfig <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/localAuthConfig/">LocalAuthConfig</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/localAuthConfig/#create">Create</a></li>
+              
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">Machine <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/machine/">Machine</a></li>
+              
+              
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">MachineDriver <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/machineDriver/">MachineDriver</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/machineDriver/#create">Create</a></li>
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/machineDriver/#update">Update</a></li>
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/machineDriver/#delete">Delete</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/machineDriver/#activate">Activate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/machineDriver/#deactivate">Deactivate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/machineDriver/#reactivate">Reactivate</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">Network <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/network/">Network</a></li>
+              
+              
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">Openldapconfig <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/openldapconfig/">Openldapconfig</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/openldapconfig/#create">Create</a></li>
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/openldapconfig/#update">Update</a></li>
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">ProcessDefinition <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/processDefinition/">ProcessDefinition</a></li>
+              
+              
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">ProcessExecution <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/processExecution/">ProcessExecution</a></li>
+              
+              
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">ProcessInstance <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/processInstance/">ProcessInstance</a></li>
+              
+              
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">Project <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/project/">Project</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/project/#create">Create</a></li>
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/project/#update">Update</a></li>
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/project/#delete">Delete</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/project/#activate">Activate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/project/#deactivate">Deactivate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/project/#setmembers">Setmembers</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">ProjectMember <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/projectMember/">ProjectMember</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/projectMember/#create">Create</a></li>
+              
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/projectMember/#activate">Activate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/projectMember/#deactivate">Deactivate</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">PullTask <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/pullTask/">PullTask</a></li>
+              
+              
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">RegistrationToken <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/registrationToken/">RegistrationToken</a></li>
+              
+              
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">Registry <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/registry/">Registry</a></li>
+              
+              
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/registry/#activate">Activate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/registry/#deactivate">Deactivate</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">RegistryCredential <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/registryCredential/">RegistryCredential</a></li>
+              
+              
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/registryCredential/#activate">Activate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/registryCredential/#deactivate">Deactivate</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">ResourceDefinition <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/resourceDefinition/">ResourceDefinition</a></li>
+              
+              
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">Service <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/service/">Service</a></li>
+              
+              
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/service/#activate">Activate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/service/#addservicelink">Addservicelink</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/service/#cancelrollback">Cancelrollback</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/service/#cancelupgrade">Cancelupgrade</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/service/#deactivate">Deactivate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/service/#finishupgrade">Finishupgrade</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/service/#removeservicelink">Removeservicelink</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/service/#restart">Restart</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/service/#rollback">Rollback</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/service/#setservicelinks">Setservicelinks</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/service/#upgrade">Upgrade</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">Setting <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/setting/">Setting</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/setting/#create">Create</a></li>
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/setting/#update">Update</a></li>
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/setting/#delete">Delete</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">Task <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/task/">Task</a></li>
+              
+              
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/task/#execute">Execute</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">TaskInstance <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/taskInstance/">TaskInstance</a></li>
+              
+              
+              
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">UserPreference <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/userPreference/">UserPreference</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/userPreference/#create">Create</a></li>
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/userPreference/#update">Update</a></li>
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/userPreference/#delete">Delete</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/userPreference/#activate">Activate</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/userPreference/#deactivate">Deactivate</a></li>
+              
+        </ul>
+    </li>
+    
+    <li>
+        <a href="#">Volume <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/volume/">Volume</a></li>
+              
+              
+              
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/volume/#restorefrombackup">Restorefrombackup</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/volume/#reverttosnapshot">Reverttosnapshot</a></li>
+              <li><a href="/docs/rancher/v1.6/en/api/v1/api-resources/volume/#snapshot">Snapshot</a></li>
+              
+        </ul>
+    </li>
+    
+</ul>
+
+      </div>
+
+      <div class="col span-8">
+        <div class="content-container">
+          <h2 id="addoutputsinput">addOutputsInput</h2>
+
+<h3 id="resource-fields">Resource Fields</h3>
+
+<h4 id="writeable-fields">Writeable Fields</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Create</th>
+      <th>Update</th>
+      <th>Default</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>outputs</td>
+      <td>map[string]</td>
+      <td>Yes</td>
+      <td>-</td>
+      <td>-</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+
+          <footer class="clearfix">
+            <div class="copyright pull-left">Copyright &copy; 2014-2017 <a href="http://rancher.com">Rancher Labs</a>.  All Rights Reserved.</div>
+            <a class="btn btn-primary pull-right" href="https://github.com/rancher/rancher.github.io/tree/master/rancher/v1.6/en/api/v1/api-resources/addOutputsInput/index.md">Edit this page <i class="fa fa-pencil"></i></a>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <script src="/docs/vendor/jquery.js?t=2017-09-13 18:12:52 -0700"></script>
+    <script src="/docs/js/jquery.slicknav.min.js?t=2017-09-13 18:12:52 -0700"></script>
+    <script src="/docs/js/rancher-docs.js?t=2017-09-13 18:12:52 -0700"></script>
+
+    <!-- Start of Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56382716-3', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <!-- End of Google Analytics -->
+
+    <!-- Start of Async HubSpot Analytics Code -->
+    <script type="text/javascript">
+    (function(d,s,i,r) {
+    if (d.getElementById(i)){return;}
+    var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
+    n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/468859.js';
+    e.parentNode.insertBefore(n, e);
+    })(document,"script","hs-analytics",300000);
+    </script>
+    <!-- End of Async HubSpot Analytics Code -->
+  </body>
+</html>
+

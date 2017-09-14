@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Rancher CLI Commands and Options</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Documentation for Rancher">
+    <link href="/docs/favicon.png" rel="shortcut icon" type="image/png" sizes="16x16">
+    <link href="/docs/css/syntax.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+    <link href="/docs/vendor/font-awesome/css/font-awesome.min.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+    <link href="/docs/vendor/lato/lato.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+    <link href="/docs/css/lacsso.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+    <link href="/docs/css/slicknav.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+    <link href="/docs/css/rancher-docs.css?t=2017-09-13 18:12:52 -0700" rel="stylesheet">
+  </head>
+  <body class="bg-default">
+    <div class="row body">
+      <header id="header" class="section">
+        <nav class="row" role="navigation">
+          <div class="col span-3">
+          <a class="navbar-brand" href="/"><img src="/docs/img/rancher-logo-nopadding.svg" width="200px" style="padding-left: 20px" /></a>
+          </div>
+
+          <div class="col span-5 offset-3">
+            <!--Start Google Search-->
+            <div class="gcse-search" id="google-search"></div>
+            <script>
+              var match = window.location.pathname.match(/\/rancher\/([^\/]+)/);
+              if ( match ) {
+                document.getElementById('google-search').setAttribute('data-defaultToRefinement', match[1]);
+              }
+
+              (function() {
+                var cx = '007896692384436596364:60akf3bfmxm';
+                var gcse = document.createElement('script');
+                gcse.type = 'text/javascript';
+                gcse.async = true;
+                gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(gcse, s);
+              })();
+            </script>
+            <!--End Google Search-->
+          </div>
+        </nav>
+      </header>
+      <div class="col span-3 mt-0 mr-0 sidebar">
+
+<ul id="menu">
+    <li><a href="/docs/rancher/v1.6/en/">Overview</a></li>
+    <li><a href="/docs/rancher/v1.6/en/quick-start-guide/">Quick Start Guide</a></li>
+    <li>
+        <a href="#">Installing Rancher<i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/">Rancher Server</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#requirements">Rancher Server Requirements</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#rancher-server-tags">Rancher Server Tags</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#single-container">Launching Rancher Server</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#multi-nodes">Setting up HA</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#requirements-for-ha">HA Requirements</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#single-container-external-database">Using an External DB</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#single-container-bind-mount">Bind Mounted MySQL Volume</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#elb">Using an ELB in AWS</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#ldap">Using LDAP/AD with TLS</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/#http-proxy">Behind an HTTP Proxy</a></li>
+          <li><a href="/docs/rancher/v1.6/en/installing-rancher/selinux/">SELinux Requirements for RHEL/CentOS</a></li>
+          <li>
+               <a href="#">Basic SSL Configuration<i class="pull-right fa fa-angle-down"></i></a>
+               <ul>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/basic-ssl-config/#requirements">Requirements</a></li>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/basic-ssl-config/#example-nginx-configuration">Example NGINX Configuration</a></li>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/basic-ssl-config/#example-apache-configuration">Example Apache Configuration</a></li>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/basic-ssl-config/#example-haproxy-configuration">Example HAProxy Configuration</a></li>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/basic-ssl-config/#example-f5-big-ip-configuration">Example F5 BIG-IP Configuration</a></li>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/basic-ssl-config/#elb">Using an ELB in AWS with SSL</a></li>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/basic-ssl-config/#using-self-signed-certs-beta">Using Self Signed Certs</a></li>
+               </ul>
+          </li>
+          <li>
+               <a href="#">No Internet Access<i class="pull-right fa fa-angle-down"></i></a>
+               <ul>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/no-internet-access/#using-a-private-registry">Using a Private Registry</a></li>
+                 <li><a href="/docs/rancher/v1.6/en/installing-rancher/installing-server/no-internet-access/#using-an-http-proxy">Using an HTTP Proxy</a></li>
+               </ul>
+          </li>
+        </ul>
+    </li>
+    <li>
+         <a href="#">Upgrading Rancher<i class="pull-right fa fa-angle-down"></i></a>
+         <ul>
+           <li><a href="/docs/rancher/v1.6/en/upgrading/">Upgrading Rancher</a></li>
+           <li><a href="/docs/rancher/v1.6/en/upgrading/#rancher-server-tags">Rancher Server Tags</a></li>
+           <li><a href="/docs/rancher/v1.6/en/upgrading/#infrastructure-services">Upgrading Infrastructure Services</a></li>
+           <li><a href="/docs/rancher/v1.6/en/upgrading/#multi-nodes">Upgrading Rancher HA Setup</a></li>
+           <li><a href="/docs/rancher/v1.6/en/upgrading/#single-container-external-database">Using an external DB</a></li>
+           <li><a href="/docs/rancher/v1.6/en/upgrading/#single-container-bind-mount">Bind Mounted MySQL Volume</a></li>
+           <li><a href="/docs/rancher/v1.6/en/upgrading/#rancher-server-with-no-internet-access">No Internet Access</a></li>
+        </ul>
+     </li>
+    <li>
+         <a href="#">Rancher Configuration<i class="pull-right fa fa-angle-down"></i></a>
+         <ul>
+           <li>
+                <a href="#">Access Control Providers<i class="pull-right fa fa-angle-down"></i></a>
+                <ul>
+                  <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#active-directory">Active Directory</a></li>
+                  <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#azure-ad">Azure AD</a></li>
+                  <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#github">Github</a></li>
+                  <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#local-authentication">Local Authentication</a></li>
+                  <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#openldap">OpenLDAP</a></li>
+                  <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#shibboleth">Shibboleth/SAML</a></li>
+                </ul>
+          </li>
+          <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#site-access">Rancher Site Access</a></li>
+          <li><a href="/docs/rancher/v1.6/en/configuration/access-control/#restricting-concurrent-sessions">Restricting Concurrent Sessions</a></li>
+          <li><a href="/docs/rancher/v1.6/en/configuration/accounts/">Accounts</a></li>
+          <li><a href="/docs/rancher/v1.6/en/configuration/settings/#host-registration">Host Registration</a></li>
+          <li><a href="/docs/rancher/v1.6/en/configuration/settings/#catalog">Enabling Catalogs</a></li>
+          <li><a href="/docs/rancher/v1.6/en/configuration/machine-drivers/">Machine Drivers</a></li>
+        </ul>
+    </li>
+    <li>
+          <a href="#">Environments<i class="pull-right fa fa-angle-down"></i></a>
+          <ul>
+            <li><a href="/docs/rancher/v1.6/en/environments/">Managing Environments</a></li>
+            <li><a href="/docs/rancher/v1.6/en/environments/#what-is-an-environment-template">Environment Templates</a></li>
+            <li><a href="/docs/rancher/v1.6/en/environments/#membership-roles">Roles in an Environment</a></li>
+          </ul>
+    </li>
+    <li>
+        <a href="#">Hosts<i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+          <li><a href="/docs/rancher/v1.6/en/hosts/">Getting Started with Hosts</a></li>
+          <li><a href="/docs/rancher/v1.6/en/hosts/#supported-docker-versions">Supported Docker Versions</a></li>
+          <li><a href="/docs/rancher/v1.6/en/hosts/#host-labels">Adding Host Labels</a></li>
+          <li><a href="/docs/rancher/v1.6/en/hosts/#scheduler-ips">Adding Scheduler IPs</a></li>
+          <li><a href="/docs/rancher/v1.6/en/hosts/#hosts-behind-an-http-proxy">Behind an HTTP Proxy</a></li>
+          <li><a href="/docs/rancher/v1.6/en/hosts/custom/">Adding Custom Hosts</a></li>
+          <li>
+              <a href="#">Adding Cloud Provided Hosts<i class="pull-right fa fa-angle-down"></i></a>
+              <ul>
+                <li><a href="/docs/rancher/v1.6/en/hosts/amazon/">Adding Amazon EC2 Hosts</a></li>
+                <li><a href="/docs/rancher/v1.6/en/hosts/azure/">Adding Azure Hosts</a></li>
+                <li><a href="/docs/rancher/v1.6/en/hosts/digitalocean/">Adding DigitalOcean Hosts</a></li>
+                <li><a href="/docs/rancher/v1.6/en/hosts/exoscale/">Adding Exoscale Hosts</a></li>
+                <li><a href="/docs/rancher/v1.6/en/hosts/packet/">Adding Packet Hosts</a></li>
+                <li><a href="/docs/rancher/v1.6/en/hosts/rackspace/">Adding Rackspace Hosts</a></li>
+                <li><a href="/docs/rancher/v1.6/en/hosts/other/">Adding Hosts from Other Cloud Providers</a></li>
+              </ul>
+          </li>
+          <li><a href="/docs/rancher/v1.6/en/hosts/#accessing-hosts-from-the-cloud-providers">Accessing Cloud Provided Hosts</a></li>
+          <li><a href="/docs/rancher/v1.6/en/hosts/#removing-hosts">Removing Hosts</a></li>
+        </ul>
+    </li>
+    <li>
+      <a href="#">Registries<i class="pull-right fa fa-angle-down"></i></a>
+      <ul>
+        <li><a href="/docs/rancher/v1.6/en/environments/registries/">Adding Private Registries</a></li>
+        <li><a href="/docs/rancher/v1.6/en/environments/registries/#insecure-registries">Insecure Registries</a></li>
+        <li><a href="/docs/rancher/v1.6/en/environments/registries/#self-signed-certificates">Self Signed Certificates</a></li>
+        <li><a href="/docs/rancher/v1.6/en/environments/registries/#using-amazons-ecr-registry">Using Amazon's ECR</a></li>
+        <li><a href="/docs/rancher/v1.6/en/environments/registries/#using-google-container-registry">Using Google Container Registry</a></li>
+        <li><a href="/docs/rancher/v1.6/en/environments/registries/#changing-the-default-registry">Changing the Default Registry</a></li>
+        <li><a href="/docs/rancher/v1.6/en/environments/registries/#limiting-which-registries-can-be-used">Limiting Registries</a></li>
+      </ul>
+    </li>
+    <li><a href="/docs/rancher/v1.6/en/environments/certificates/">Certificates</a></li>
+    <li>
+      <a href="#">Infrastructure Services<i class="pull-right fa fa-angle-down"></i></a>
+          <ul>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/">Infrastructure Services</a></li>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/networking/">Networking</a></li>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/network-policy/">Network Policies</a></li>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/load-balancer">Load Balancer</a></li>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/dns-service/">DNS Service</a></li>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/metadata-service/">Metadata Service</a></li>
+              <li>
+                  <a href="#">Persistent Storage Service<i class="pull-right fa fa-angle-down"></i></a>
+                  <ul>
+                      <li><a href="/docs/rancher/v1.6/en/rancher-services/storage-service/">Persistent Storage Service</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/rancher-services/storage-service/rancher-nfs/">Rancher NFS</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/rancher-services/storage-service/rancher-ebs/">Rancher EBS</a></li>
+                  </ul>
+              </li>
+              <li>
+                  <a href="#">External Scheduler<i class="pull-right fa fa-angle-down"></i></a>
+                  <ul>
+                      <li><a href="/docs/rancher/v1.6/en/rancher-services/scheduler/">External Scheduler</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/rancher-services/scheduler/#multiple-ips">Scheduling against multiple IPs</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/rancher-services/scheduler/#resource-constraints">Scheduling with Resource Constraints</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/rancher-services/scheduler/#restrict-services-on-host">Scheduling only Specific Services on a Host</a></li>
+                  </ul>
+              </li>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/audit-log/">Audit Logging</a></li>
+              <li><a href="/docs/rancher/v1.6/en/rancher-services/service-accounts/">Service Accounts</a></li>
+           </ul>
+    </li>
+    <li>
+          <a href="#">Cattle<i class="pull-right fa fa-angle-down"></i></a>
+          <ul>
+                <li><a href="/docs/rancher/v1.6/en/cattle/stacks/">Stacks</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/adding-services/">Services</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/volumes/">Volumes</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/">Load Balancers</a></li>
+                <li>
+                    <a href="#">Load Balancer Options in the UI<i class="pull-right fa fa-angle-down"></i></a>
+                    <ul>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#adding-a-load-balancer-in-the-ui">Adding Load Balancers</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#service-rule">Targeting Specific Services</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#selector-rule">Targeting Services based on Selectors</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#ssl-termination">SSL Termination</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#stickiness-policy-for-load-balancers">Stickiness Policy</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#custom-haproxy-configuration">Custom HAProxy Configuration</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#labelsscheduling-load-balancers">Labels and Scheduling</a></li>
+                      </ul>
+                </li>
+                <li>
+                    <a href="#">Load Balancer Options with CLI and Compose<i class="pull-right fa fa-angle-down"></i></a>
+                    <ul>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#adding-a-load-balancer-with-rancher-compose">Adding Load Balancers</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#source-ports">Defining Source Ports</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#port-rules">Port Rules</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#certificates">Certificates</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#custom-configuration">Custom HAProxy Configuration</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#stickiness-policy">Stickiness Policy</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#load-balancer-example-l7">Example of L7 Load Balancer</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#internal-load-balancer-example">Example of Internal Load Balancer</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/adding-load-balancers/#ssl-termination-example">Example of SSL Termination with a Load Balancer</a></li>
+                      </ul>
+                </li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/adding-external-services/">External Services</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/adding-service-alias/">Service Alias</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/health-checks/">Health Checks</a></li>
+                <li>
+                    <a href="#">Scheduling Services<i class="pull-right fa fa-angle-down"></i></a>
+                    <ul>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/scheduling/">Scheduling</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/scheduling/#scheduling-options-in-the-ui">Scheduling in the UI</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/scheduling/#adding-labels-in-rancher-compose">Scheduling in Rancher Compose</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/scheduling/#table-of-scheduling-labels">Table of Scheduling Labels</a></li>
+                    </ul>
+                </li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/upgrading/">Upgrading Services</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/internal-dns-service/">Internal DNS Service in Cattle Environments</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/external-dns-service/">External DNS Service</a></li>
+                <li>
+                    <a href="#">Rancher-Compose<i class="pull-right fa fa-angle-down"></i></a>
+                    <ul>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/rancher-compose/">Rancher Compose</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/rancher-compose/commands/">Commands and Options</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/rancher-compose/environment-interpolation/">Environment Interpolation</a></li>
+                        <li><a href="/docs/rancher/v1.6/en/cattle/rancher-compose/build/">Building with AWS S3</a></li>
+                    </ul>
+                </li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/secrets/">Secrets - Experimental</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/webhook-service/">Webhooks</a></li>
+                <li><a href="/docs/rancher/v1.6/en/cattle/labels/">Labels in Cattle</a></li>
+          </ul>
+    </li>
+    <li>
+          <a href="#">Kubernetes<i class="pull-right fa fa-angle-down"></i></a>
+          <ul>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/">Launching Kubernetes</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/resiliency-planes/">Resiliency Planes</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/providers/">Cloud Providers</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/private-registry/">Private Registry</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/rbac/">RBAC</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/disaster-recovery/">Disaster Recovery</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/backups/">Backups</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/storage/">Persistent Storage</a></li>
+              <li>
+                  <a href="#">Add-ons Support<i class="pull-right fa fa-angle-down"></i></a>
+                  <ul>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/addons/">Add-ons Support</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/addons/#helm">Helm</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/addons/#skydns">SkyDNS</a></li>
+                  </ul>
+              </li>
+              <li>
+                  <a href="#">Ingress Support and Options<i class="pull-right fa fa-angle-down"></i></a>
+                  <ul>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/">Ingress Support</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#host-based-routing">Host Based Routing</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#path-based-routing">Path Based Routing</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#scale-and-other-port">Multiple Load Balancers and Selecting Ports</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#tls">Using TLS</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#blocking-http">Blocking HTTP</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#custom-haproxy">Custom HAProxy</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#scheduled-globally">Scheduling on all Hosts</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#host-scheduling">Scheduling on a specific Host</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#only-local">Targeting Only Containers on the Same Host</a></li>
+                      <li><a href="/docs/rancher/v1.6/en/kubernetes/ingress/#prefer-local">Prioritizing Containers on the Same Host</a></li>
+                  </ul>
+              </li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/upgrading/">Upgrading Kubernetes</a></li>
+              <li><a href="/docs/rancher/v1.6/en/kubernetes/deleting/">Deleting Kubernetes</a></li>
+
+          </ul>
+    </li>
+    <li><a href="/docs/rancher/v1.6/en/mesos/">Mesos</a></li>
+    <li><a href="/docs/rancher/v1.6/en/swarm/">Swarm - Experimental </a></li>
+    <li><a href="/docs/rancher/v1.6/en/windows/">Windows - Experimental</a></li>
+    <li><a href="/docs/rancher/v1.6/en/native-docker/">Using Native Docker CLI</a></li>
+    <li>
+            <a href="#">Rancher Catalog<i class="pull-right fa fa-angle-down"></i></a>
+            <ul>
+                <li><a href="/docs/rancher/v1.6/en/catalog/">Catalog</a></li>
+                <li><a href="/docs/rancher/v1.6/en/catalog/private-catalog/">Creating Private Catalogs</a></li>
+            </ul>
+        </li>
+    <li><a href="#">Rancher CLI<i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+            <li><a href="/docs/rancher/v1.6/en/cli/">Rancher CLI</a></li>
+            <li><a href="/docs/rancher/v1.6/en/cli/commands/">Commands and Options</a></li>
+            <li><a href="/docs/rancher/v1.6/en/cli/variable-interpolation/">Variable Interpolation</a></li>
+        </ul>
+    </li>
+    <li><a href="/docs/rancher/v1.6/en/api/v2-beta/">API Documentation</a></li>
+    <li><a href="/docs/rancher/v1.6/en/contributing/">Contributing to Rancher</a></li>
+    <li>
+        <a href="#">FAQs<i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+            <li><a href="/docs/rancher/v1.6/en/faqs/server/">FAQs about Rancher Server</a></li>
+            <li><a href="/docs/rancher/v1.6/en/faqs/agents/">FAQs about Rancher Agents/Hosts</a></li>
+            <li><a href="/docs/rancher/v1.6/en/faqs/troubleshooting/">Troubleshooting FAQS</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">Docs Archive<i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
+            <li><a href="/docs/rancher/v1.5/en/">Rancher v1.5</a></li>
+            <li><a href="/docs/rancher/v1.4/en/">Rancher v1.4</a></li>
+            <li><a href="/docs/rancher/v1.3/en/">Rancher v1.3</a></li>
+            <li><a href="/docs/rancher/v1.2/en/">Rancher v1.2</a></li>
+            <li><a href="/docs/rancher/v1.1/en/">Rancher v1.1</a></li>
+            <li><a href="/docs/rancher/v1.0/en/">Rancher v1.0</a></li>
+        </ul>
+    </li>
+</ul>
+
+      </div>
+
+      <div class="col span-8">
+        <div class="content-container">
+          <h2 id="commands-and-options">Commands and Options</h2>
+<hr />
+
+<p>The Rancher CLI is able to manipulate environments, hosts, stacks, services and containers in Rancher.</p>
+
+<h3 id="rancher-cli-commands">Rancher CLI Commands</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">catalog</code></td>
+      <td><a href="#rancher-catalog-reference">Operations with catalogs</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">config</code></td>
+      <td><a href="#rancher-config-reference">Setup client configuration</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">docker</code></td>
+      <td><a href="#rancher-docker-reference">Run docker CLI on a host</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">environment</code>, <code class="highlighter-rouge">env</code></td>
+      <td><a href="#rancher-environment-reference">Interact with environments</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">events</code>, <code class="highlighter-rouge">event</code></td>
+      <td><a href="#rancher-events-reference">Displays resource change events</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">exec</code></td>
+      <td><a href="#rancher-exec-reference">Run a command on a container</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">export</code></td>
+      <td><a href="#rancher-export-reference">Export configuration yml for a stack as a tar archive or to local files</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">hosts</code>, <code class="highlighter-rouge">host</code></td>
+      <td><a href="#rancher-hosts-reference">Operations on hosts</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">logs</code></td>
+      <td><a href="#rancher-logs-reference">Fetch the logs of a container</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ps</code></td>
+      <td><a href="#rancher-ps-reference">Show services/containers</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">restart</code></td>
+      <td><a href="#rancher-restart-reference">Restart service, container</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rm</code></td>
+      <td><a href="#rancher-rm-reference">Delete service, container, stack, host, volume</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">run</code></td>
+      <td><a href="#rancher-run-reference">Run services</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">scale</code></td>
+      <td><a href="#rancher-scale-reference">Set number of containers to run for a service</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ssh</code></td>
+      <td><a href="#rancher-ssh-reference">SSH into host</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">stacks</code>, <code class="highlighter-rouge">stack</code></td>
+      <td><a href="#rancher-stacks-reference">Operations on stacks</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">start</code>, <code class="highlighter-rouge">activate</code></td>
+      <td><a href="#rancher-startactivate-reference">Start or activate service, container, host, stack</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">stop</code>, <code class="highlighter-rouge">deactivate</code></td>
+      <td><a href="#rancher-stopdeactivate-reference">Stop or deactivate service, container, host, stack</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">up</code></td>
+      <td><a href="#rancher-up-reference">Bring all services up</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">volumes</code>, <code class="highlighter-rouge">volume</code></td>
+      <td><a href="#rancher-volumes-reference">Operations on volumes</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">inspect</code></td>
+      <td><a href="#rancher-inspect-reference">View details for service, container, host, environment, stack, volume</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">wait</code></td>
+      <td><a href="#rancher-wait-reference">Wait for resources service, container, host, stack, machine, projectTemplate</a></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">help</code></td>
+      <td>Shows a list of commands or help for one command</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h3 id="rancher-cli-global-options">Rancher CLI Global Options</h3>
+
+<p>Whenever you use the <code class="highlighter-rouge">rancher</code> command, there are different global options that you can use.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--debug</code></td>
+      <td>Debug logging</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--config</code> value, <code class="highlighter-rouge">-c</code> value</td>
+      <td>Client configuration file (default ${HOME}/.rancher/cli.json) [$RANCHER_CLIENT_CONFIG]</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--environment</code> value, <code class="highlighter-rouge">--env</code> value</td>
+      <td>Environment name or ID [$RANCHER_ENVIRONMENT]</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--url</code> value</td>
+      <td>Specify the Rancher API endpoint URL [$RANCHER_URL]</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--access-key</code> value</td>
+      <td>Specify Rancher API access key [$RANCHER_ACCESS_KEY]</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--secret-key</code> value</td>
+      <td>Specify Rancher API secret key [$RANCHER_SECRET_KEY]</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--host</code> value</td>
+      <td>Host used for docker command [$RANCHER_DOCKER_HOST]</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--wait</code>, <code class="highlighter-rouge">-w</code></td>
+      <td>Wait for resource to reach resting state</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--wait-timeout</code> value</td>
+      <td>Timeout in seconds to wait (default: 600)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--wait-state</code> value</td>
+      <td>State to wait for (active, healthy, etc)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--help</code>, <code class="highlighter-rouge">-h</code></td>
+      <td>show help</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--version</code>, <code class="highlighter-rouge">-v</code></td>
+      <td>print the version</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h4 id="waiting-for-resources">Waiting For Resources</h4>
+
+<p>There is a global flag, i.e. <code class="highlighter-rouge">--wait</code> or <code class="highlighter-rouge">-w</code>,  that can be used for commands to reach resting state. When scripting your Rancher commands, using <code class="highlighter-rouge">-w</code> allows you to wait until the resources are ready before moving on to the next command.</p>
+
+<p>By default, the timeout for waiting will be ten minutes, but if you want to change the waiting timeout, you can use <code class="highlighter-rouge">--wait-timeout</code> to change the amount of time before the CLI errors out.</p>
+
+<p>You can also define which specific state of a resource to be in before exiting, by using <code class="highlighter-rouge">--wait-state</code>.</p>
+
+<h3 id="rancher-catalog-reference">Rancher Catalog Reference</h3>
+
+<p>The <code class="highlighter-rouge">rancher catalog</code> command provides operations around catalog templates.</p>
+
+<h4 id="options">Options</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--quiet</code>, <code class="highlighter-rouge">-q</code></td>
+      <td>Only display IDs</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--format</code> value</td>
+      <td><code class="highlighter-rouge">json</code> or Custom format: ‘{{.ID}} {{.Template.Id}}’</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--system</code>, <code class="highlighter-rouge">-s</code></td>
+      <td>Show system templates, not user</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="subcommands">Subcommands</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">ls</code></td>
+      <td><code class="highlighter-rouge">List catalog templates</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">install</code></td>
+      <td>Install catalog template</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">help</code></td>
+      <td>Shows a list of commands or help for one command</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="rancher-catalog-ls">Rancher Catalog Ls</h4>
+
+<p>The <code class="highlighter-rouge">rancher catalog ls</code> command lists all the templates in the environment.</p>
+
+<h5 id="options-1">Options</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--quiet</code>, <code class="highlighter-rouge">-q</code></td>
+      <td>Only display IDs</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--format</code> value</td>
+      <td><code class="highlighter-rouge">json</code> or Custom format: ‘{{.ID}} {{.Template.Id}}’</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--system</code>, <code class="highlighter-rouge">-s</code></td>
+      <td>Show system templates, not user</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Lists all catalog templates</span>
+<span class="gp">$ </span>rancher catalog ls
+<span class="c"># Lists all catalog templates in an environment that is running kubernetes</span>
+<span class="gp">$ </span>rancher --env k8sEnv catalog ls
+<span class="c"># Lists the catalog templates that are system templates</span>
+<span class="gp">$ </span>rancher catalog ls --system
+</code></pre>
+</div>
+
+<h4 id="rancher-catalog-install">Rancher Catalog install</h4>
+
+<p>The <code class="highlighter-rouge">rancher catalog install</code> command installs catalog templates into your environment.</p>
+
+<h5 id="options-2">Options</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">-answers</code> value, <code class="highlighter-rouge">-a</code> value</td>
+      <td>Answer file. Format should be <code class="highlighter-rouge">yaml</code> or <code class="highlighter-rouge">json</code> with the appropriate file extension suffixed.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--name</code> value</td>
+      <td>Name of stack to create</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--system</code>, <code class="highlighter-rouge">-s</code></td>
+      <td>Install a system template</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Install a catalog</span>
+<span class="gp">$ </span>rancher catalog install library/route53:v0.6.0-rancher1 --name route53
+<span class="c"># Install a catalog and label it as a system template</span>
+<span class="gp">$ </span>rancher catalog install library/route53:v0.6.0-rancher1 --name route53 --system
+</code></pre>
+</div>
+
+<h3 id="rancher-config-reference">Rancher Config Reference</h3>
+
+<p>The <code class="highlighter-rouge">rancher config</code> command sets up your <a href="/docs/rancher/v1.6/en/cli/#configuring-the-rancher-command-line-interface">configuration with Rancher server</a>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rancher config
+URL <span class="o">[]</span>: http://&lt;server_ip&gt;:8080
+Access Key <span class="o">[]</span>: &lt;accessKey_of_account_api_key&gt;
+Secret Key <span class="o">[]</span>:  &lt;secretKey_of_account_api_key&gt;
+<span class="c"># If there are more than one environment,</span>
+<span class="c"># you will be asked to select which environment to work with</span>
+Environments:
+<span class="o">[</span>1] Default<span class="o">(</span>1a5<span class="o">)</span>
+<span class="o">[</span>2] k8s<span class="o">(</span>1a10<span class="o">)</span>
+Select: 1
+INFO[0017] Saving config to /Users/&lt;username&gt;/.rancher/cli.json
+</code></pre>
+</div>
+
+<h4 id="options-3">Options</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--print</code></td>
+      <td><code class="highlighter-rouge">Print the current configuration</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>If you want to print the existing configuration, you can use <code class="highlighter-rouge">----print</code> to show the existing configuration.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Clear out the existing Rancher configuration</span>
+<span class="gp">$ </span>rancher config --print
+</code></pre>
+</div>
+
+<h3 id="rancher-docker-reference">Rancher Docker Reference</h3>
+
+<p>The <code class="highlighter-rouge">rancher docker</code> command allows you to run any Docker command on a specific host. Uses the <code class="highlighter-rouge">$RANCHER_DOCKER_HOST</code> to run Docker commands. Use <code class="highlighter-rouge">--host &lt;hostID&gt;</code> or <code class="highlighter-rouge">--host &lt;hostName&gt;</code> to select a different host.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rancher --host 1h1 docker ps
+</code></pre>
+</div>
+
+<h4 id="options-4">Options</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--help-docker</code></td>
+      <td>Display the <code class="highlighter-rouge">docker --help</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<blockquote>
+  <p><strong>Note:</strong> If the environment variable, <code class="highlighter-rouge">RANCHER_DOCKER_HOST</code>, is not set, you will need to pass in <code class="highlighter-rouge">--host</code> to specify which host to use.</p>
+</blockquote>
+
+<h3 id="rancher-environment-reference">Rancher Environment Reference</h3>
+
+<p>The <code class="highlighter-rouge">rancher environment</code> command allows you to interact with environments. If you use an account API key, you will be able to create and update environments. If you use an environment API key, you will not be able to create or update other environments and you will only be able to see your existing environment.</p>
+
+<h4 id="options-5">Options</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--all</code>, <code class="highlighter-rouge">-a</code></td>
+      <td>Show stop/inactive and recently removed resources</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--quiet</code>, <code class="highlighter-rouge">-q</code></td>
+      <td>Only display IDs</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--format</code> value</td>
+      <td><code class="highlighter-rouge">json</code> or Custom format: ‘{{.ID}} {{.Environment.Name}}’</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="subcommands-1">Subcommands</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">ls</code></td>
+      <td>List environments</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">create</code></td>
+      <td>Create an environment</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">templates</code>, <code class="highlighter-rouge">template</code></td>
+      <td>Interact with environment templates</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rm</code></td>
+      <td>Remove environment(s)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">deactivate</code></td>
+      <td>Deactivate environment(s)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">activate</code></td>
+      <td>Activate environment(s)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">help</code></td>
+      <td>Shows a list of commands or help for one command</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="rancher-env-ls">Rancher Env Ls</h4>
+
+<p>The <code class="highlighter-rouge">rancher env ls</code> command lists all the environments in the Rancher set up.</p>
+
+<h5 id="options-6">Options</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--all</code>, <code class="highlighter-rouge">-a</code></td>
+      <td>Show stop/inactive and recently removed resources</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--quiet</code>, <code class="highlighter-rouge">-q</code></td>
+      <td>Only display IDs</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--format</code> value</td>
+      <td><code class="highlighter-rouge">json</code> or Custom format: ‘{{.ID}} {{.Environment.Name}}’</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rancher env ls
+ID        NAME      ORCHESTRATION   STATE     CREATED
+1a5       Default   Cattle          active    2016-08-15T19:20:46Z
+1a6       k8sEnv    Kubernetes      active    2016-08-17T03:25:04Z
+<span class="c"># List only the IDs of the environments</span>
+<span class="gp">$ </span>rancher env ls -q
+1a5
+1a6
+</code></pre>
+</div>
+
+<h4 id="rancher-env-create">Rancher Env Create</h4>
+
+<p>The <code class="highlighter-rouge">rancher env create</code> command creates new environments of different orchestration types. By default, the orchestration type will be cattle.</p>
+
+<h5 id="options-7">Options</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--template</code> value, <code class="highlighter-rouge">-t</code> value</td>
+      <td>Environment template to create from (default: “Cattle”)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Create a environement</span>
+<span class="gp">$ </span>rancher env create newCattleEnv
+<span class="c"># Create a kubernetes environment</span>
+<span class="gp">$ </span>rancher env create -t kubernetes newk8sEnv
+</code></pre>
+</div>
+
+<h4 id="rancher-env-template">Rancher Env Template</h4>
+
+<p>The <code class="highlighter-rouge">rancher env template</code> command allows you to export and import templates into Rancher.</p>
+
+<h5 id="options-8">Options</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--all</code>, <code class="highlighter-rouge">-a</code></td>
+      <td>Show stop/inactive and recently removed resources</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--quiet</code>, <code class="highlighter-rouge">-q</code></td>
+      <td>Only display IDs</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--format</code> value</td>
+      <td><code class="highlighter-rouge">json</code> or Custom format: ‘{{.ID}} {{.ProjectTemplate.Name}}’</td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="subcommands-2">Subcommands</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">export</code></td>
+      <td>Export an environment template to STDOUT</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">import</code></td>
+      <td>Import an environment template to from file</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">help</code></td>
+      <td>Shows a list of commands or help for one command</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="rancher-env-rm">Rancher Env Rm</h4>
+
+<p>The <code class="highlighter-rouge">rancher env rm</code> command removes environments. You can remove with either the environment name or environment ID.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Remove environment by name</span>
+<span class="gp">$ </span>rancher env rm newk8sEnv
+<span class="c"># Remove environment by ID</span>
+<span class="gp">$ </span>rancher env rm 1a20
+</code></pre>
+</div>
+
+<h4 id="rancher-env-deactivate">Rancher Env Deactivate</h4>
+
+<p>The <code class="highlighter-rouge">rancher env deactivate</code> command deactivates the environment. You select which environment to update with either environment name or environment ID.</p>
+
+<h4 id="rancher-env-activate">Rancher Env Activate</h4>
+
+<p>The <code class="highlighter-rouge">rancher env activate</code> command activates the environment. You select which environment to update with either environment name or environment ID.</p>
+
+<h3 id="rancher-events-reference">Rancher Events Reference</h3>
+
+<p>The <code class="highlighter-rouge">rancher events</code> command lists out all active events occurring inside the Rancher server.</p>
+
+<h4 id="options-9">Options</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--format</code> value</td>
+      <td><code class="highlighter-rouge">json</code> or Custom format: ‘{{.Name}} {{.Data.resource.kind}}’</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--reconnect</code>, <code class="highlighter-rouge">-r</code></td>
+      <td>Reconnect on error</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="rancher-exec-reference">Rancher Exec Reference</h3>
+
+<p>The <code class="highlighter-rouge">rancher exec</code> command allows you to directly exec into any container in Rancher. The user does not need to know what host the container is on. They only need to know the container ID, e.g. <code class="highlighter-rouge">1i1</code>, <code class="highlighter-rouge">1i788</code>) in the Rancher setup.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Exec into a container</span>
+<span class="gp">$ </span>rancher <span class="nb">exec</span> -i -t 1i10
+</code></pre>
+</div>
+
+<h4 id="options-10">Options</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--help-docker</code></td>
+      <td>Display the <code class="highlighter-rouge">docker exec --help</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>After the <code class="highlighter-rouge">rancher exec</code> command finds the container, it runs the <code class="highlighter-rouge">docker exec</code> command on the specific host and container. To show the help for the <code class="highlighter-rouge">docker exec</code> command, you can pass in an option to show the <code class="highlighter-rouge">docker exec --help</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Show docker exec --help</span>
+<span class="gp">$ </span>rancher <span class="nb">exec</span> --help-docker
+</code></pre>
+</div>
+
+<h3 id="rancher-export-reference">Rancher Export Reference</h3>
+
+<p>The <code class="highlighter-rouge">rancher export</code> command exports the <code class="highlighter-rouge">docker-compose.yml</code> and <code class="highlighter-rouge">rancher-compose.yml</code> for a stack as a tar archive.</p>
+
+<h4 id="options-11">Options</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--file</code> value, <code class="highlighter-rouge">-f</code> value</td>
+      <td>Write to a file, instead of local files, use - to write to STDOUT</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--system</code>, <code class="highlighter-rouge">-s</code></td>
+      <td>If exporting the entire environment, include system</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Provide the docker-compose.yml and rancher-compose.yml for</span>
+<span class="c"># all services in a stack as a tar archive</span>
+<span class="gp">$ </span>rancher <span class="nb">export </span>mystack &gt; files.tar
+<span class="gp">$ </span>rancher <span class="nb">export</span> -f files.tar mystack
+</code></pre>
+</div>
+
+<h3 id="rancher-hosts-reference">Rancher hosts reference</h3>
+
+<p>The <code class="highlighter-rouge">rancher hosts</code> command allows you to interact with hosts in the environment.</p>
+
+<h4 id="options-12">Options</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--all</code>, <code class="highlighter-rouge">-a</code></td>
+      <td>Show stop/inactive and recently removed resources</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--quiet</code>, <code class="highlighter-rouge">-q</code></td>
+      <td>Only display IDs</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--format</code> value</td>
+      <td><code class="highlighter-rouge">json</code> or Custom format: ‘{{.ID}} {{.Host.Hostname}}’</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="subcommands-3">Subcommands</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">ls</code></td>
+      <td>List hosts</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">create</code></td>
+      <td>Create a host</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="rancher-hosts-ls">Rancher Hosts Ls</h4>
+
+<p>The <code class="highlighter-rouge">rancher hosts ls</code> command lists all the hosts.</p>
+
+<h5 id="options-13">Options</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--all</code>, <code class="highlighter-rouge">-a</code></td>
+      <td>Show stop/inactive and recently removed resources</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--quiet</code>, <code class="highlighter-rouge">-q</code></td>
+      <td>Only display IDs</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--format</code> value</td>
+      <td><code class="highlighter-rouge">json</code> or Custom format: ‘{{.ID}} {{.Host.Hostname}}’</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rancher hosts ls
+ID        HOSTNAME      STATE     IP
+1h1       host-1        active    111.222.333.444
+1h2       host-3        active    111.222.333.555
+1h3       host-2        active    111.222.333.666
+1h4       host-4        active    111.222.333.777
+1h5       host-5        active    111.222.333.888
+1h6       host-6        active    111.222.333.999
+<span class="c"># Only display the host IDs</span>
+<span class="gp">$ </span>rancher hosts ls -q
+1h1       
+1h2      
+1h3      
+1h4       
+1h5       
+1h6
+</code></pre>
+</div>
+
+<h4 id="rancher-hosts-create">Rancher Hosts Create</h4>
+
+<p>The <code class="highlighter-rouge">rancher hosts create</code> command allows you to create <a href="/docs/rancher/v1.6/en/hosts/">hosts</a>. When creating hosts, you will be calling a Docker Machine command, and will need to pass in the same options needed for the Docker Machine driver.</p>
+
+<h3 id="rancher-logs-reference">Rancher Logs reference</h3>
+
+<p>The <code class="highlighter-rouge">rancher logs</code> allows you to fetch the logs of a container by container ID or container name.</p>
+
+<h4 id="options-14">Options</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--service</code>, <code class="highlighter-rouge">-s</code></td>
+      <td>Show service logs</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--sub-log</code></td>
+      <td>Show service sub logs</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--follow</code>, <code class="highlighter-rouge">-f</code></td>
+      <td>Follow log output</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--tail</code> value</td>
+      <td>Number of lines to show from the end of the logs (default: 100)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--since</code> value</td>
+      <td>Show logs since timestamp</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--timestamps</code>, <code class="highlighter-rouge">-t</code></td>
+      <td>Show timestamps</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Get the logs for the last 50 lines using container ID</span>
+<span class="gp">$ </span>rancher logs --tail 50 &lt;ID&gt;
+<span class="c"># Tail the logs using container name</span>
+<span class="gp">$ </span>rancher logs -f &lt;stackName&gt;/&lt;serviceName&gt;
+</code></pre>
+</div>
+
+<h3 id="rancher-ps-reference">Rancher ps reference</h3>
+
+<p>The <code class="highlighter-rouge">rancher ps</code> command shows all the services or containers in Rancher. If you don’t pass in any options into the <code class="highlighter-rouge">rancher ps</code> command, the command will return the list of all services in the environment.</p>
+
+<h4 id="options-15">Options</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--all</code>, <code class="highlighter-rouge">-a</code></td>
+      <td>Show stop/inactive and recently removed resources</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--system</code>, <code class="highlighter-rouge">-s</code></td>
+      <td>Show system resources</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--containers</code>, <code class="highlighter-rouge">-c</code></td>
+      <td>Display containers</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--quiet</code>, <code class="highlighter-rouge">-q</code></td>
+      <td>Only display IDs</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--format</code> value</td>
+      <td><code class="highlighter-rouge">json</code> or Custom format: ‘{{.Service.Id}} {{.Service.Name}} {{.Service.LaunchConfig.ImageUuid}}’</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># List all the services</span>
+<span class="gp">$ </span>rancher ps
+ID        TYPE      NAME           IMAGE     STATE        SCALE     ENDPOINTS   DETAIL
+1s1       service   Default/blog   ghost     activating   3                     Waiting <span class="k">for</span> <span class="o">[</span>instance:Default_blog_3]. Instance status: Storage : Downloading
+<span class="c"># List all the containers instead of services</span>
+<span class="gp">$ </span>rancher ps -c
+ID        NAME             IMAGE                           STATE     HOST      DETAIL
+1i1       Default_blog_1   ghost                           running   1h1       
+1i2       Default_blog_2   ghost                           running   1h2       
+1i3       Default_blog_3   ghost                           running   1h3  
+</code></pre>
+</div>
+
+<p>The <code class="highlighter-rouge">detail</code> column will provide the current status of the service.</p>
+
+<h3 id="rancher-restart-reference">Rancher restart reference</h3>
+
+<p>You can restart any hosts, services or containers in Rancher using <code class="highlighter-rouge">rancher restart</code>.</p>
+
+<h4 id="options-16">Options</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--type</code> value</td>
+      <td>Restrict restart to specific types (service, container)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--batch-size</code> value</td>
+      <td>Number of containers to restart at a time (default: 1)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--interval</code> value</td>
+      <td>Interval in millisecond to wait between restarts (default: 1000)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Restart by ID of service, container, host</span>
+<span class="gp">$ </span>rancher restart &lt;ID&gt;
+<span class="c"># Restart by name of service, container, host</span>
+<span class="gp">$ </span>rancher restart &lt;stackName&gt;/&lt;serviceName&gt;
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<blockquote>
+  <p><strong>Note:</strong> The service name will always include the stack name to ensure that we’re referencing the correct service.</p>
+</blockquote>
+
+<h3 id="rancher-rm-reference">Rancher rm reference</h3>
+
+<p>The <code class="highlighter-rouge">rancher rm</code> command removes resources, i.e. hosts, stacks, services, containers or volumes, from Rancher.</p>
+
+<h4 id="options-17">Options</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--type</code> value</td>
+      <td>Restrict delete to specific types</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--stop</code>, <code class="highlighter-rouge">-s</code></td>
+      <td>Stop or deactivate resource first if needed before deleting</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rancher rm &lt;ID&gt;
+</code></pre>
+</div>
+
+<h3 id="rancher-run-reference">Rancher run reference</h3>
+
+<p>The <code class="highlighter-rouge">run</code> command will deploy a service with the scale of 1 container into Rancher. When creating the service, if you want to place the service in a specific stack, you’ll need to pass in <code class="highlighter-rouge">--name</code> and give the <code class="highlighter-rouge">stackName/serviceName</code>. If no <code class="highlighter-rouge">--name</code> is used, then it puts the service in the <code class="highlighter-rouge">Default</code> stack with a docker provided name.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rancher run --name App2/app nginx
+<span class="c"># CLI returns the service ID of the newly created service</span>
+1s3
+<span class="gp">$ </span>rancher -i -t --name serviceA ubuntu:14.04.3
+1s4
+</code></pre>
+</div>
+
+<p>If you select to publish a port to the host, then you must have a host with the port available. Rancher will automatically schedule the container on a host that has that port available.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rancher -p 2368:2368 --name blog ghost
+1s5
+</code></pre>
+</div>
+
+<h3 id="rancher-scale-reference">Rancher scale reference</h3>
+
+<p>By default, when you start a service using <code class="highlighter-rouge">rancher run</code>, the scale of the service will be 1. You can use the <code class="highlighter-rouge">rancher scale</code> command to increase the scale of any service. You can select the service by name, i.e. <code class="highlighter-rouge">stackName/serviceName</code>, or by service ID.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rancher scale &lt;stackName&gt;/&lt;serviceName&gt;<span class="o">=</span>5 &lt;serviceID&gt;<span class="o">=</span>3
+</code></pre>
+</div>
+
+<h3 id="rancher-ssh-reference">Rancher ssh reference</h3>
+
+<p>The <code class="highlighter-rouge">rancher ssh</code> allows you to ssh into any host created by the UI. It will not allow you to ssh into a host added by the <a href="/docs/rancher/v1.6/en/hosts/custom/">custom</a> command.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rancher ssh &lt;hostID&gt;
+</code></pre>
+</div>
+
+<h3 id="rancher-stacks-reference">Rancher stacks reference</h3>
+
+<p>The <code class="highlighter-rouge">rancher stacks</code> command interacts with the stacks in the environment.</p>
+
+<h4 id="options-18">Options</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--system</code>, <code class="highlighter-rouge">-s</code></td>
+      <td>Show system resources</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--quiet</code>, <code class="highlighter-rouge">-q</code></td>
+      <td>Only display IDs</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--format</code> value</td>
+      <td><code class="highlighter-rouge">json</code> or Custom format: ‘{{.ID}} {{.Stack.Name}}’</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="commands">Commands</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">ls</code></td>
+      <td>List stacks</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">create</code></td>
+      <td>Create a stacks</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="rancher-stacks-ls">Rancher Stacks Ls</h4>
+
+<p>The <code class="highlighter-rouge">rancher stacks ls</code> command lists the stacks in the selected environment.</p>
+
+<h5 id="options-19">Options</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--system</code>, <code class="highlighter-rouge">-s</code></td>
+      <td>Show system resources</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--quiet</code>, <code class="highlighter-rouge">-q</code></td>
+      <td>Only display IDs</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--format</code> value</td>
+      <td><code class="highlighter-rouge">json</code> or Custom format: ‘{{.ID}} {{.Stack.Name}}’</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c">#List all stacks</span>
+<span class="gp">$ </span>rancher stacks ls
+ID        NAME        STATE      CATALOG                           SYSTEM    DETAIL
+1e1       zookeeper   healthy    catalog://community:zookeeper:1   <span class="nb">false     
+</span>1e2       Default     degraded                                     <span class="nb">false     
+</span>1e3       App1        healthy                                      <span class="nb">false</span>     
+<span class="c"># List only stack IDs</span>
+<span class="gp">$ </span>rancher stacks ls -q
+1e1
+1e2
+1e3
+</code></pre>
+</div>
+
+<h4 id="rancher-stacks-create">Rancher Stacks Create</h4>
+
+<p>The <code class="highlighter-rouge">rancher stacks create</code> command creates new stacks. The stacks could be empty or created from a <code class="highlighter-rouge">docker-compose.yml</code> and <code class="highlighter-rouge">rancher-compose.yml</code>.</p>
+
+<h5 id="options-20">Options</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--start</code></td>
+      <td>Start stack on create</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--system</code>, <code class="highlighter-rouge">-s</code></td>
+      <td>Create a system stack</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--empty</code>, <code class="highlighter-rouge">-e</code></td>
+      <td>Create an empty stack</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--quiet</code>, <code class="highlighter-rouge">-q</code></td>
+      <td>Only display IDs</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--docker-compose</code> value, <code class="highlighter-rouge">-f</code> value</td>
+      <td>Docker Compose file (default: “docker-compose.yml”)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--rancher-compose</code> value, <code class="highlighter-rouge">-r</code> value</td>
+      <td>Rancher Compose file (default: “rancher-compose.yml”)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Create an empty stack</span>
+<span class="gp">$ </span>rancher stacks create NewStack -e
+<span class="c"># Create a stack from a docker-compose and rancher-compose files</span>
+<span class="c"># Also, start the stack upon creation</span>
+<span class="gp">$ </span>rancher stacks create NewStack -f dc.yml -r rc.yml --start
+</code></pre>
+</div>
+
+<h3 id="rancher-startactivate-reference">Rancher start/activate reference</h3>
+
+<p>The <code class="highlighter-rouge">rancher start</code> or <code class="highlighter-rouge">rancher activate</code> command activates specific resource types, i.e. hosts, services or containers.</p>
+
+<h4 id="options-21">Options</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--type</code> value</td>
+      <td>Restrict start/activate to specific types (service, container, host, stack)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Start by ID of service, container, host</span>
+<span class="gp">$ </span>rancher start &lt;ID&gt;
+<span class="c"># Start by name of service, container, host</span>
+<span class="gp">$ </span>rancher start &lt;stackName&gt;/&lt;serviceName&gt;
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<blockquote>
+  <p><strong>Note:</strong> The service name will always include the stack name to ensure that we’re referencing the correct service.</p>
+</blockquote>
+
+<h3 id="rancher-stopdeactivate-reference">Rancher stop/deactivate reference</h3>
+
+<p>The <code class="highlighter-rouge">rancher stop</code> or <code class="highlighter-rouge">rancher deactivate</code> command deactivates specific resource types, i.e. hosts, services or containers.</p>
+
+<h4 id="options-22">Options</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--type</code> value</td>
+      <td>Restrict stop/deactivate to specific types (service, container, host, stack)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Stop by ID of service, container, host</span>
+<span class="gp">$ </span>rancher stop &lt;ID&gt;
+<span class="c"># Stop by name of service, container, host</span>
+<span class="gp">$ </span>rancher stop &lt;stackName&gt;/&lt;serviceName&gt;
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<blockquote>
+  <p><strong>Note:</strong> The service name will always include the stack name to ensure that we’re referencing the correct service.</p>
+</blockquote>
+
+<h3 id="rancher-up-reference">Rancher up Reference</h3>
+
+<p>The <code class="highlighter-rouge">rancher up</code> command is similar to the Docker Compose <code class="highlighter-rouge">up</code> command.</p>
+
+<h4 id="options-23">Options</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--pull</code>, <code class="highlighter-rouge">-p</code></td>
+      <td>Before doing the upgrade do an image pull on all hosts that have the image already</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">-d</code></td>
+      <td>Do not block and log</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--upgrade</code>, <code class="highlighter-rouge">-u</code>, <code class="highlighter-rouge">--recreate</code></td>
+      <td>Upgrade if service has changed</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--force-upgrade</code>, <code class="highlighter-rouge">--force-recreate</code></td>
+      <td>Upgrade regardless if service has changed</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--confirm-upgrade</code>, <code class="highlighter-rouge">-c</code></td>
+      <td>Confirm that the upgrade was success and delete old containers</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--rollback</code>, <code class="highlighter-rouge">-r</code></td>
+      <td>Rollback to the previous deployed version</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--batch-size</code> value</td>
+      <td>Number of containers to upgrade at once (default: 2)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--interval</code> value</td>
+      <td>Update interval in milliseconds (default: 1000)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--rancher-file</code> value</td>
+      <td>Specify an alternate Rancher compose file (default: rancher-compose.yml)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--env-file</code> value, <code class="highlighter-rouge">-e</code> value</td>
+      <td>Specify a file from which to read environment variables. File should be in <code class="highlighter-rouge">yaml</code> or <code class="highlighter-rouge">json</code> format and suffixed with respective file extension.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--file</code> value, <code class="highlighter-rouge">-f</code> value</td>
+      <td>Specify one or more alternate compose files (default: docker-compose.yml) [$COMPOSE_FILE]</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--stack</code> value, <code class="highlighter-rouge">-s</code> value</td>
+      <td>Specify an alternate project name (default: directory name)</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Add in -d at the end to not block and log</span>
+<span class="gp">$ </span>rancher up -s &lt;stackName&gt; -d
+</code></pre>
+</div>
+
+<h3 id="rancher-volumes-reference">Rancher volumes Reference</h3>
+
+<p>The <code class="highlighter-rouge">rancher volumes</code> command allows you to interact with volumes in Rancher.</p>
+
+<h4 id="options-24">Options</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--all</code>, <code class="highlighter-rouge">-a</code></td>
+      <td>Show stop/inactive and recently removed resources</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--quiet</code>, <code class="highlighter-rouge">-q</code></td>
+      <td>Only display IDs</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--format</code> value</td>
+      <td><code class="highlighter-rouge">json</code> or Custom format: ‘{{.ID}} {{.Volume.Name}}’</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="commands-1">Commands</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">ls</code></td>
+      <td>List volumes</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">rm</code></td>
+      <td>Delete volume</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">create</code></td>
+      <td>Create volume</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="rancher-volume-ls">Rancher Volume LS</h4>
+
+<p>The <code class="highlighter-rouge">rancher volume ls</code> command lists all volumes in the selected environment.</p>
+
+<h5 id="options-25">Options</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--all</code>, <code class="highlighter-rouge">-a</code></td>
+      <td>Show stop/inactive and recently removed resources</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--quiet</code>, <code class="highlighter-rouge">-q</code></td>
+      <td>Only display IDs</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--format</code> value</td>
+      <td><code class="highlighter-rouge">json</code> or Custom format: ‘{{.ID}} {{.Volume.Name}}’</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rancher volumes ls
+ID        NAME                       STATE      DRIVER        DETAIL
+1v1                                  active                   
+1v2                                  active                   
+1v3                                  detached                 
+1v4                                  active                   
+1v5                                  detached                 
+1v6                                  detached                 
+1v7       rancher-agent-state        active     <span class="nb">local</span>         
+</code></pre>
+</div>
+
+<h4 id="rancher-volume-rm">Rancher Volume Rm</h4>
+
+<p>The <code class="highlighter-rouge">rancher volume rm</code> command removes volumes from Rancher.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rancher volumes rm &lt;VOLUME_ID&gt;
+</code></pre>
+</div>
+
+<h4 id="rancher-volume-create">Rancher Volume Create</h4>
+
+<p>The <code class="highlighter-rouge">rancher volume create</code> command creates volumes in Rancher.</p>
+
+<h5 id="options-26">Options</h5>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--driver</code> value</td>
+      <td>Specify volume driver name</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--opt</code> value</td>
+      <td>Set driver specific key/value options</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Create a new volume in the Rancher NFS driver</span>
+<span class="gp">$ </span>rancher volume create NewVolume --driver rancher-nfs
+</code></pre>
+</div>
+
+<h3 id="rancher-inspect-reference">Rancher inspect Reference</h3>
+
+<p>The <code class="highlighter-rouge">rancher inspect</code> provides detail on the resource.</p>
+
+<h4 id="options-27">Options</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">--type</code> value</td>
+      <td>Restrict inspect to specific types (service, container, host)</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--links</code></td>
+      <td>Include URLs to actions and links in resource output</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">--format</code> value</td>
+      <td><code class="highlighter-rouge">json</code> or Custom format: ‘{{.kind}}’ (default: “json”)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Inspect by ID of service, container, host</span>
+<span class="gp">$ </span>rancher inspect &lt;ID&gt;
+<span class="c"># Inspect by name of service, container, host</span>
+<span class="gp">$ </span>rancher inspect &lt;stackName&gt;/&lt;serviceName&gt;
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<blockquote>
+  <p><strong>Note:</strong> The service name will always include the stack name to ensure that we’re referencing the correct service.</p>
+</blockquote>
+
+<h3 id="rancher-wait-reference">Rancher wait Reference</h3>
+
+<p>The <code class="highlighter-rouge">rancher wait</code> command waits for a resource to complete it’s action. This is very useful for when automating Rancher commands so that you can add in the script to wait for the resource to be ready for more actions.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rancher start 1i1
+<span class="gp">$ </span>rancher <span class="nb">wait </span>1i1
+</code></pre>
+</div>
+
+
+          <footer class="clearfix">
+            <div class="copyright pull-left">Copyright &copy; 2014-2017 <a href="http://rancher.com">Rancher Labs</a>.  All Rights Reserved.</div>
+            <a class="btn btn-primary pull-right" href="https://github.com/rancher/rancher.github.io/tree/master/rancher/v2.0/en/cli/commands/index.md">Edit this page <i class="fa fa-pencil"></i></a>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <script src="/docs/vendor/jquery.js?t=2017-09-13 18:12:52 -0700"></script>
+    <script src="/docs/js/jquery.slicknav.min.js?t=2017-09-13 18:12:52 -0700"></script>
+    <script src="/docs/js/rancher-docs.js?t=2017-09-13 18:12:52 -0700"></script>
+
+    <!-- Start of Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-56382716-3', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <!-- End of Google Analytics -->
+
+    <!-- Start of Async HubSpot Analytics Code -->
+    <script type="text/javascript">
+    (function(d,s,i,r) {
+    if (d.getElementById(i)){return;}
+    var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
+    n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/468859.js';
+    e.parentNode.insertBefore(n, e);
+    })(document,"script","hs-analytics",300000);
+    </script>
+    <!-- End of Async HubSpot Analytics Code -->
+  </body>
+</html>
+
