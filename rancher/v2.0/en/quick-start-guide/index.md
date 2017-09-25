@@ -52,10 +52,10 @@ This process might take several minutes to complete.
 >**Note:** Initially, Rancher creates a **Default** cluster and environment for you. Rancher supports grouping resources into multiples clusters and environments. A **cluster** is a group of physical (or virtual) compute resources. Each environment is tied to one cluster and runs its containers on the cluster's hosts, and you can share a cluster with more than one environment. An **environment** is a namespace where applications, services, and containers are defined. The containers in an environment can communicate with each other over a shared managed network, and you can give different users/groups access to manage the resources of the environment.
 
 3. Select one of the options for adding hosts, and then continue to the relevant section below:
-  * **Add Hosts** -- Select this option if you want to manage hosts in Rancher. To add an existing host with Docker installed or a new host through a supported cloud provider, go to [**Adding Hosts**]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/#addhost/).
-  * **Use existing Kubernetes** -- Select this option if you want the cluster provider to manage hosts outside Rancher. To import an existing Kubernetes installation, go to [**Importing Kubernetes Clusters**]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/#import-k8s/).
+  * **Add Hosts** -- Select this option if you want to manage hosts in Rancher. To add an existing host with Docker installed or a new host through a supported cloud provider, go to [**Adding Hosts**](#addhost).
+  * **Use existing Kubernetes** -- Select this option if you want the cluster provider to manage hosts outside Rancher. To import an existing Kubernetes installation, go to [**Importing Kubernetes Clusters**](#import-k8s).
 
-<a id="addhost"></a>
+<a href="#addhost" id="addhost"></a>
 ### Adding Hosts
 You can either add a host from a cloud provider that Rancher v2.0 supports, or you can add a custom host. If you don't see your cloud provider in the UI, don't worry. Simply use the custom host option.
 
@@ -90,7 +90,7 @@ If you're adding a custom host, note these requirements:
 2. To register your host with Rancher, copy, paste, and run the `docker` command on your host. This process might take a few minutes to complete.
 3. Click **Close**. On the Hosts page, you can view the status of your host.
 
-<a id="import-k8s"></a>
+<a href="#import-k8s" id="import-k8s"></a>
 ### Importing Kubernetes Clusters
 
 In Rancher v2.0, you can import an existing, external installation of Kubernetes v1.7+. In this scenario, the cluster provider manages your hosts outside of Rancher. We support hosted services like Google Container Engine, Azure Container Service, IBM Bluemix, and bring-your-own-Kubernetes installations.
