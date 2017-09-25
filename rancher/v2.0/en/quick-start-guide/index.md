@@ -10,200 +10,140 @@ redirect_from:
 ## Quick Start Guide
 ---
 
-In this guide, we will create a simple Rancher install, which is a single host installation that runs everything on a single Linux machine.
+In this guide, you'll learn how to get started with Rancher v2.0, including:
 
-### Prepare a Linux host
+* Preparing a Linux Host
+* Launching Rancher Server and Accessing the Rancher UI
+* Adding a Host through the Rancher UI
+* Importing an Existing Kubernetes Cluster
+* Adding a Container through the Rancher UI
 
-Provision a Linux host with 64-bit Ubuntu 16.04, which must have a kernel of 3.10+. You can use your laptop, a virtual machine, or a physical server. Please make sure the Linux host has at least **1GB** memory. Install a [supported version of Docker]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/hosts/#supported-docker-versions) onto the host.
+We'll also cover a couple of advanced topics, such as:
 
-To install Docker on the server, follow the instructions from [Docker](https://docs.docker.com/engine/installation/linux/ubuntulinux/).
+* Launching Catalog Applications
+* Using Advanced Kubernetes Options
 
-> **Note:** Currently, Docker for Windows and Docker for Mac are not supported.
+<a id="prepare-host"></a>
+### Preparing a Linux Host
+To begin, you'll need to install a supported version of Docker on a single Linux host:
+* Docker v1.12.6
+* Docker v1.31.1
+* Docker v17.03
+* Docker v17.06
 
+#### To Prepare a Linux Host:
+1. Prepare a Linux host with 64-bit Ubuntu 16.04, at least 4GB of memory, and a kernel of 3.10+.
+2. Install a supported version of Docker on the host. To install Docker on the server, follow the instructions from [Docker](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/).
 
-### Rancher Server Tags
+<a id="launch-rancher"></a>
+### Launching Rancher Server
+It only takes one command and a few minutes to install and launch Rancher Server. Once installed, you can open a web browser to access the Rancher UI.
 
-Rancher server has 2 different tags. For each major release tag, we will provide documentation for the specific version.
-
-* `rancher/server:latest` tag will be our latest development builds. These builds will have been validated through our CI automation framework. These releases are not meant for deployment in production.
-* `rancher/server:stable` tag will be our latest stable release builds. This tag is the version that we recommend for production.  
-
-Please do not use any release with a `rc{n}` suffix. These `rc` builds are meant for the Rancher team to test out builds.
-
-### Start Rancher Server
-
-All you need is one command to launch Rancher server. After launching the container, we'll tail the logs of the container to see when the server is up and running.
-
-```bash
-$ sudo docker run -d --restart=unless-stopped -p 8080:8080 rancher/server:stable
-# Tail the logs to show Rancher
-$ sudo docker logs -f <CONTAINER_ID>
-```
-
-It will only take a couple of minutes for Rancher server to start up. When the logs show `.... Startup Succeeded, Listening on port...`, the Rancher UI is up and running. This line of the logs is almost immediately after the configuration is complete. There may be additional logs after this output, so please don't assume it will be the last line of the logs upon initialization.
-
-Our UI is exposed on port `8080`, so in order to view the UI, go to `http://<SERVER_IP>:8080`. If you are running your browser on the same host running Rancher server, you will need to use the host’s real IP, like `http://192.168.1.100:8080` and not `http://localhost:8080` or `http://127.0.0.1:8080`.
-
-> **Note:** Rancher will not have access control configured and your UI and API will be available to anyone who has access to your IP. We recommend configuring [access control]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/configuration/access-control/).
-
-### Add Hosts
-
-For simplicity, we will add the same host running the Rancher server as a host in Rancher. In real production deployments, we recommend having dedicated hosts running Rancher server(s).
-
-To add a host, access the UI and click **Infrastructure**, which will immediately bring you to the **Hosts** page. Click on the **Add Host**. Rancher will prompt you to select a host registration URL. This URL is where Rancher server is running and must be reachable from all the hosts that you will be adding. This is useful in installations where Rancher server will be exposed to the Internet through a NAT firewall or a load balancer. If your host has a private or local IP address like `192.168.*.*`, Rancher will print a warning asking you to make sure that the hosts can indeed reach the URL.
-
-For now you can ignore these warnings, we will only be adding the Rancher server host itself. Click **Save**. By default, the **Custom** option will be selected, which provides the Docker command to launch the Rancher agent container. There will also be options for cloud providers, which Rancher uses Docker Machine to launch hosts.
-
-In the UI, it provides instructions of the ports that need to be open on your host as well as some optional information. Since we are adding a host that is also running Rancher server, we need to add the public IP that should be used for the host. One of the options provides the ability to input this IP, which automatically updates the custom command with an environment variable.
-
-Run this command in the host that is running Rancher server.
-
-When you click **Close** on the Rancher UI, you will be directed back to the **Infrastructure** -> **Hosts** view. In a couple of minutes, the host will automatically appear.
-
-### Infrastructure services
-
-When you first log in to Rancher, you are automatically in a **Default** [environment]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/). The default cattle [environment template]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/environments/#what-is-an-environment-template) has been selected for this environment to launch [infrastructure services]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/). These infrastructure services are required to be launched to take advantage of Rancher's benefits like [dns]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/dns-service/), [metadata]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/metadata-service),  [networking]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/rancher-services/networking), and [health checks]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cattle/health-checks/). These infrastructure stacks can be found in **Stacks** -> **Infrastructure**. These stacks will be in an `unhealthy` state until a host is added into Rancher. After adding a host, it is recommended to wait until all the infrastructure stacks are `active` before adding services.
-
-On the host, the containers from the infrastructure services will be hidden unless you click on the **Show System** checkbox.
-
-### Create a Container through UI
-
-Navigate to the **Stacks** page, if you see the welcome screen, you can click on the **Define a Service** button in the welcome screen. If there are already services in your Rancher set up, you can click on **Add Service** in any existing stack or create a new stack to add services in. A stack is just a convenient way to group services together. If you need to create a new stack, click on **Add Stack**, provide a name and description and click **Create**. Then, click on **Add Service** in the new stack.
-
-Provide the service with a name like "first-service". You can just use our default settings and click **Create**. Rancher will start launching the container on the host. Regardless what IP address your host has, the **_first-container_** will have an IP address in the `10.42.*.*` range as Rancher has created a managed overlay network with the `ipsec` infrastructure service. This managed overlay network is how containers can communicate with each other across different hosts.
-
-If you click on the dropdown of the **_first-container_**, you will be able to perform management actions like stopping the container, viewing the logs, or accessing the container console.
-
-### Create a Container through Native Docker CLI
-
-Rancher will display any containers on the host even if the container is created outside of the UI. Create a container in the host's shell terminal.
+#### To Launch Rancher Server:
+1. Run this Docker command on your host:
 
 ```bash
-$ docker run -d -it --name=second-container ubuntu:14.04.2
+$ sudo docker run -d --restart=unless-stopped -p 8080:8080 rancher/server:preview
 ```
+This process might take several minutes to complete.  
 
-In the UI, you will see **_second-container_** pop up on your host!
+2. To access the Rancher UI, go to `http://<SERVER_IP>:8080`, replacing `<SERVER_IP>` with the IP address of your host. Rancher automatically deploys and manages Kubernetes, and the UI displays a Welcome page with two options for adding hosts.
 
-Rancher reacts to events that happen on the Docker daemon and does the right thing to reconcile its view of the world with reality. You can read more about using Rancher with the [native docker CLI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/native-docker/).
+>**Note:** Initially, Rancher creates a **Default** cluster and environment for you. Rancher supports grouping resources into multiples clusters and environments. A **cluster** is a group of physical (or virtual) compute resources. Each environment is tied to one cluster and runs its containers on the cluster's hosts, and you can share a cluster with more than one environment. An **environment** is a namespace where applications, services, and containers are defined. The containers in an environment can communicate with each other over a shared managed network, and you can give different users/groups access to manage the resources of the environment.
 
-If you look at the IP address of the **_second-container_**, you will notice that it is **not** in the `10.42.*.*` range. It instead has the usual IP address assigned by the Docker daemon. This is the expected behavior of creating a Docker container through the CLI.
+3. Select one of the options for adding hosts, and then continue to the relevant section below:
+  * **Add Hosts** -- Select this option if you want to manage hosts in Rancher. To add an existing host with Docker installed or a new host through a supported cloud provider, go to [**Adding Hosts**]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/#addhost/).
+  * **Use existing Kubernetes** -- Select this option if you want the cluster provider to manage hosts outside Rancher. To import an existing Kubernetes installation, go to [**Importing Kubernetes Clusters**]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/#import-k8s/).
 
-What if we want to create a Docker container through CLI and still give it an IP address from Rancher’s overlay network? All we need to do is add a label (i.e. `io.rancher.container.network=true`) in the command to let Rancher know that you want this container to be part of the `managed` network.
+<a id="addhost"></a>
+### Adding Hosts
+You can either add a host from a cloud provider that Rancher v2.0 supports, or you can add a custom host. If you don't see your cloud provider in the UI, don't worry. Simply use the custom host option.
 
-```bash
-$ docker run -d -it --label io.rancher.container.network=true ubuntu:14.04.2
-```
+If you're adding a custom host, note these requirements:
+* Typically, Rancher automatically detects the IP address to register the host.
+  * If the host is behind a NAT or the same machine that is running the `rancher/server` container, you might need to explicitly specify its IP address. To do so, click **Show advanced options**, and then enter the **Registration IP Address**.
+* The host agent initiates a connection to the server, so make sure firewalls or security groups allow it to reach the URL in the command.
+* All hosts in the environment must to allow traffic between each other for cross-host networking
+  * IPSec: `500/udp` and `4500/udp`
+  * VXLAN: `4789/udp`
 
-### Create a Multi-Container Application
+<a id="cloudprovided"></a>
+#### To Add a Host from a Cloud Provider:
+1. On the Add Hosts page, select your cloud provider:
+   * Amazon EC2
+   * Microsoft Azure
+   * DigitalOcean
+   * Packet
 
-We have shown you how to create individual containers and explained how they would be connected in our cross-host network. Most real-world applications, however, are made out of multiple services, with each service made up of multiple containers. A [LetsChat](http://sdelements.github.io/lets-chat/) application, for example, could consist of the following services:
+2. Follow the instructions in the Rancher UI to add your host. This process might take a few minutes to complete. Once your host is ready, you can view its status on the Hosts page.
 
-1. A load balancer. The load balancer redirects Internet traffic to the "LetsChat" application.
-2. A _web_ service consisting of two "LetsChat" containers.
-3. A _database_ service consisting of one "Mongo" container.
+<a id="custom"></a>
+#### To Add a Custom Host:
+1. On the Add Hosts page, click **Custom**. A `docker` command displays. For example:
+   ```bash
+   sudo docker run --rm --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v2.0-alpha2
+   http://<SERVER_IP>:8080/v3/scripts/D5433C26EC51325F9D98:1483142400000:KvILQKwz1N2MpOkOiIvGYKKGdE
+   ```
 
-The load balancer targets the _web_ service (i.e. LetsChat), and the _web_ service will link to the _database_ service (i.e. Mongo).
+   >**Note:** The IP address in the command must match your `<SERVER_IP>` and must be reachable from inside your host.
 
-In this section, we will walk through how to create and deploy the [LetsChat](http://sdelements.github.io/lets-chat/) application in Rancher.
+2. To register your host with Rancher, copy, paste, and run the `docker` command on your host. This process might take a few minutes to complete.
+3. Click **Close**. On the Hosts page, you can view the status of your host.
 
-Navigate to the **Stacks** page, if you see the welcome screen, you can click on the **Define a Service** button in the welcome screen. If there are already services in your Rancher set up, you can click on **Add Stack** to create a new stack. Provide a name and description and click **Create**. Then, click on **Add Service** in the new stack.
+<a id="import-k8s"></a>
+### Importing Kubernetes Clusters
 
-First, we'll create a database service called `database` and use the `mongo` image. Click **Create**. You will be immediately brought to a stack page, which will contain the newly created _database_ service.
+In Rancher v2.0, you can import an existing, external installation of Kubernetes v1.7+. In this scenario, the cluster provider manages your hosts outside of Rancher. We support hosted services like Google Container Engine, Azure Container Service, IBM Bluemix, and bring-your-own-Kubernetes installations.
 
-Next, click on **Add Service** again to add another service. We'll add a LetsChat service and link to the _database_ service. Let's use the name, `web`, and use the `sdelements/lets-chat` image. In the UI, we'll move the slider to have the scale of the service to be 2 containers. In the **Service Links**, add the _database_ service and provide the name `mongo`. Just like in Docker, Rancher will link the necessary environment variables in the `letschat` image from the linked database when you input the "as name" as `mongo`. Click **Create**.
+#### To Import a Kubernetes Cluster:
+1. A `kubectl` command displays in the UI. Copy, paste, and execute this command against your Kubernetes cluster. This process might take a few minutes to complete.
+2. Click **Close**. On the Hosts page, you can view the status of your Kubernetes nodes.
 
-Finally, we'll create our load balancer. Click on the dropdown menu icon next to the **Add Service** button. Select **Add Load Balancer**. Provide a name like `letschatapplb`. Input the source port (i.e. `80`), select the target service (i.e. _web_), and select a target port (i.e. `8080`). The _web_ service is listening on port `8080`. Click **Create**.
+<a id="containers"></a>
+### Adding Containers
 
-Our LetsChat application is now complete! On the **Stacks** page, you'll be able to find the exposed port of the load balancer as a link. Click on that link and a new browser will open, which will display the LetsChat application.
+After you add at least one host or cluster to your environment, it might take several minutes for all Rancher system services to launch. To verify the status of your environment, from the **Default** menu, select **System**. If a service is healthy, its state displays in green.
 
-### Create a Multi-Container Application using Rancher CLI
+Once you've verified that all system services are up and running, you're ready to create your first container.
 
-In this section, we will show you how to create and deploy the same [LetsChat](http://sdelements.github.io/lets-chat/) application we created in the previous section using our command-line tool called [Rancher CLI]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/cli/).
+#### To Add a Container:
+1. On the Rancher UI menu, click **Containers**.
+2. Click **Add Container**. The Add Container page displays.
+3. Enter a **Name**, such as "first-container."
+4. Enter a **Docker Image** hosted on Docker Hub.
+5. Click **Launch**. This process might take a few minutes to complete. Once your container starts running, you can view its status on the Containers page.
 
-When bringing services up in Rancher, the Rancher CLI tool works similarly to the popular Docker Compose tool. It takes in the same `docker-compose.yml` file and deploys the application on Rancher. You can specify additional attributes in a `rancher-compose.yml` file which extends and overwrites the `docker-compose.yml` file.
+Now that you've added hosts and your first container is up and running, you can check out the rest of our new features in Rancher v2.0.
 
-In the previous section, we created a LetsChat application with a load balancer. If you had created it in Rancher, you can download the files directly from our UI by selecting **Export Config** from the stack's dropdown menu. The `docker-compose.yml` and `rancher-compose.yml` files would look like this:
+<a id="catalog"></a>
+### Launching Catalog Applications
 
-#### Example docker-compose.yml
+To help you deploy complex stacks, Rancher offers a catalog of application templates.
 
-```yaml
-version: '2'
-services:
-  letschatapplb:
-    #If you only have 1 host and also created the host in the UI,
-    # you may have to change the port exposed on the host.
-    ports:
-    - 80:80/tcp
-    labels:
-      io.rancher.container.create_agent: 'true'
-      io.rancher.container.agent.role: environmentAdmin
-    image: rancher/lb-service-haproxy:v0.4.2
-  web:
-    labels:
-      io.rancher.container.pull_image: always
-    tty: true
-    image: sdelements/lets-chat
-    links:
-    - database:mongo
-    stdin_open: true
-  database:
-    labels:
-      io.rancher.container.pull_image: always
-    tty: true
-    image: mongo
-    stdin_open: true
-```
+#### To Launch a Catalog Application:
+1. On the Rancher UI menu, click **Apps**. The Applications page displays.
+2. Click **Launch from Catalog**. The Catalog displays the available application templates.
+3. Search for the template you want to launch, and then click **View Details**.
+4. Complete the required fields.
 
-#### Example rancher-compose.yml
+>**Note:** To review the `docker-compose.yml` and `rancher-compose.yml` files used to generate the stacks, click **Preview** before launching the stack.
 
-```yaml
-version: '2'
-services:
-  letschatapplb:
-    scale: 1
-    lb_config:
-      certs: []
-      port_rules:
-      - hostname: ''
-        path: ''
-        priority: 1
-        protocol: http
-        service: web
-        source_port: 80
-        target_port: 8080
-    health_check:
-      port: 42
-      interval: 2000
-      unhealthy_threshold: 3
-      healthy_threshold: 2
-      response_timeout: 2000
-  web:
-    scale: 2
-  database:
-    scale: 1
-```
+5. Click **Launch**. On the Applications page, you'll see Rancher is creating a stack based on your new application. This process might take a few minutes.
 
-<br>
-Download the Rancher CLI binary from the Rancher UI by clicking on **Download CLI**, which is located on the right side of the footer. We provide the ability to download binaries for Windows, Mac, and Linux.
+Once its services are up and running, the state of your new stack displays in green.
 
-In order for services to be launched in Rancher using Rancher CLI, you will need to set some environment variables. You will need to create an account [API Key]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-keys/) in the Rancher UI. Click on **API** -> **Keys**. Click on **Add Account API Key**. Provide a name and click **Create**. Save the **Access Key** and **Secret Key**. Using the Rancher URL, Access Key and Secret Key, configure the Rancher CLI by running `rancher config`.
+<a id="advanced-k8s"></a>
+### Using Advanced Kubernetes Options
 
-```bash
-# Configure Rancher CLI
-$ rancher config
-# Set the Rancher URL
-URL []: http://<SERVER_IP>:8080/
-# Set the access key, i.e. username
-Access Key []: <accessKey_of_account_api_key>
-# Set the secret key, i.e. password
-Secret Key []:  <secretKey_of_account_api_key>
-```
+From the Rancher UI, you can access the native Kubernetes dashboard with one click.
 
-<br>
-Now, navigate to the directory where you saved `docker-compose.yml` and `rancher-compose.yml` and run the command.
+You can also run `kubectl` from your web browser. The Kubernetes CLI, or `kubectl`, helps you deploy and manage your Kubernetes applications. For more information, or to download `kubectl`, visit the [Kubernetes documenation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
-```bash
-$ rancher up -d -s NewLetsChatApp
-```
-<br>
-In Rancher, a new stack will be created called **NewLetsChatApp** with all of the services launched in Rancher.
+In addition, you can generate a Kubernetes configuration file to use `kubectl` on your desktop. A Kubernetes configuration, or *kubeconfig*, file lets you configure access to one or more clusters.  
+
+#### To Use Advanced Kubernetes Options:
+1. On the Rancher UI menu, click **Containers**.
+2. Select the **Advanced** tab. The following advanced options display:
+   * **Launch Dashboard** -- Select this option to access the native Kubernetes dashboard in a new browser window.
+   * **Launch kubectl** -- Select this option to run `kubectl` commands from your browser using shell. Click **Close** to return to the Rancher UI.
+   * **Download kubeconfig** -- Select this option to generate a *kubeconfig* file to use `kubectl` on your desktop. Copy and paste the code that displays into your `~/.kube/config file`, and then run `kubectl`. Click **Close** to return to the Rancher UI.
